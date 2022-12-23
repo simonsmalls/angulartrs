@@ -1,0 +1,31 @@
+ul {
+  padding : 0;
+  list-style-type: none;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+}
+ul li {
+  padding-left : 15px;
+  padding-top : 10px;
+
+}
+a {
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+
+}
+a:hover {
+  color : darkgreen;
+  text-decoration: underline;
+}
+
+.master {
+  text-decoration: underline;
+}
+div{
+  background-color: darkgrey;
+  padding-left: 20px;
+  padding-bottom: 2px;
+}
