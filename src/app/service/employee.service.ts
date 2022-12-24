@@ -1,0 +1,31 @@
+import { Injectable } from '@angular/core';
+import {Observable} from "rxjs";
+
+import {HttpClient} from "@angular/common/http";
+import { Employee } from '../model/employee.model';
+import { LoginModel } from '../model/login.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EmployeeService {
+
+  url:string='http://localhost:8888/api/employees/';
+  connectedUser:Employee
+
+  constructor(protected httpClient: HttpClient) { }
+
+  allEmployees(): Observable<Employee[]> {
+    return this.httpClient.get<Employee[]>(this.url);
+  }
+
+  checkLogin( login:LoginModel): Observable<Employee[]> {
+    return this.httpClient.post<Employee[]>(this.url+ 'login',login);
+  }
+
+  findById(id: number): Observable<Employee> {
+    return this.httpClient.get<Employee>(this.url + "id");
+  }
+
+
+}
