@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import { Employee } from '../model/employee.model';
 import { LoginModel } from '../model/login.model';
 
@@ -19,8 +19,8 @@ export class EmployeeService {
     return this.httpClient.get<Employee[]>(this.url);
   }
 
-  checkLogin( login:LoginModel): Observable<Employee[]> {
-    return this.httpClient.post<Employee[]>(this.url+ 'login',login);
+  checkLogin( login:LoginModel): Observable<Employee> {
+    return this.httpClient.post<Employee>(this.url+ 'login',login);
   }
 
   findById(id: number): Observable<Employee> {

@@ -1,11 +1,13 @@
 <div>
-  <ul>
-
+  <ul *ngIf="userConnected()">
     <li>
       <a routerLink="/login">login</a>
     </li>
+  </ul>
 
-
-
+  <ul *ngIf="!userConnected()">
+    <li>
+      <a (click)="disconnect()">logout</a>
+    </li>
   </ul>
 </div>

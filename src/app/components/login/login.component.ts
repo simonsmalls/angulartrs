@@ -39,6 +39,15 @@ export class LoginComponent implements OnInit  {
 
     console.log(loginmodel.password)
     console.log(loginmodel.abbreviation)
+    
+    this.employeeService.checkLogin(loginmodel).subscribe((c)=>{
+      if(c!=null){
+        this.employeeService.connectedUser=c;
+        console.log("user is connected")
+      }
+      }
+      
+    )
 
   }
 }

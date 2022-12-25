@@ -1,13 +1,12 @@
-<p>login works!</p>
 
 <div class="container">
 
-  <div >
+  <div [formGroup]="entityForm">
     <mat-form-field appearance="fill" >
       <input matInput placeholder="gebruikersnaam"   formControlName="username">
     </mat-form-field>
   </div>
-  <div >
+  <div [formGroup]="entityForm" >
 
       <mat-form-field appearance="fill" >
         <mat-label>paswoord</mat-label>
@@ -20,5 +19,5 @@
   <div>
       <mat-button-toggle  (click)="login()"> order</mat-button-toggle>
   </div>
- 
+
 </div>
