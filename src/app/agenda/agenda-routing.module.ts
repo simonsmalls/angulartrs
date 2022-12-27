@@ -5,8 +5,9 @@ import { ScheduleComponent } from './schedule/schedule.component';
 
 const routes: Routes = [
   {path:'check', component:ScheduleComponent  },
-  {path:'toevoegen', component:AddActivityComponent  },
-  
+  {path:'toevoegen', component:AddActivityComponent },
+  {path: '', redirectTo: 'agenda/check', pathMatch:'full'},
+
 ];
 
 @NgModule({

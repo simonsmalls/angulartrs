@@ -12,7 +12,7 @@ import {WorkingTime} from "../model/working-time.model";
 export class EmployeeService {
 
   url:string='http://localhost:8888/api/employees/';
-  connectedUser:Employee
+  connectedUser:Employee;
 
   constructor(protected httpClient: HttpClient) { }
 

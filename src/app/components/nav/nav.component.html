@@ -1,16 +1,21 @@
-<div>
-  <ul *ngIf="userConnected()">
+<nav>
+  <!--<ul *ngIf="userConnected()">
     <li>
       <a routerLink="/login">login</a>
     </li>
-  </ul>
-
-  <ul *ngIf="!userConnected()">
+  </ul>-->
+  <ul>
     <li>
-      <a (click)="disconnect()">logout</a>
+      <a routerLink="/agenda">Agenda</a>
     </li>
     <li>
       <a routerLink="/time-registration">Tijd registratie</a>
     </li>
   </ul>
-</div>
+
+  <ul *ngIf="!userConnected()" class="right-nav">
+    <li>
+      <a (click)="disconnect()">Logout</a>
+    </li>
+  </ul>
+</nav>
