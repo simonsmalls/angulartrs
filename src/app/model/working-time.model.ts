@@ -5,7 +5,7 @@ export class WorkingTime {
   date: Date;
   start: Time;
   end: Time;
-  timeWorked: Time;
+  timeWorkedMin: number;
   consultantId: number;
   consultantName: string;
 }

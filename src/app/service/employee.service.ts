@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import { Employee } from '../model/employee.model';
 import { LoginModel } from '../model/login.model';
+import {WorkingTime} from "../model/working-time.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,8 @@ export class EmployeeService {
     return this.httpClient.get<Employee>(this.url + "id");
   }
 
+  startClock(consultantId: number){
+    return this.httpClient.get<WorkingTime>(this.url + `workingtime/start/${consultantId}`);
+  }
 
 }

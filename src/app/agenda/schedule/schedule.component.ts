@@ -4,6 +4,7 @@ import { DateDTO } from 'src/app/model/date-dto';
 import { ActivityService } from 'src/app/service/activity.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 import {MatTableDataSource} from "@angular/material/table";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-schedule',
@@ -18,12 +19,14 @@ export class ScheduleComponent implements OnInit {
   constructor(
     private employeeService:EmployeeService,
     private activityService:ActivityService,
+    private router: Router,
               ) {
 
   }
 
   ngOnInit(): void {
     let user=this.employeeService.connectedUser;
+    if (user == null) this.router.navigate(["/login"]);
     let date=new DateDTO();
     date.year=2022;
     date.day=26;
