@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import {EmployeeService} from "../../service/employee.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { LoginModel } from 'src/app/model/login.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit  {
 
   constructor(private employeeService:EmployeeService,
               private fb:FormBuilder,
+              private router:Router,
 
               ){}
 
@@ -39,14 +41,14 @@ export class LoginComponent implements OnInit  {
 
     console.log(loginmodel.password)
     console.log(loginmodel.abbreviation)
-    
+
     this.employeeService.checkLogin(loginmodel).subscribe((c)=>{
       if(c!=null){
         this.employeeService.connectedUser=c;
-        console.log("user is connected")
+        this.router.navigate(['/agenda/check']);
       }
       }
-      
+
     )
 
   }
