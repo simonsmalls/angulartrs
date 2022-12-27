@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AgendaRoutingModule } from './agenda-routing.module';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { AddActivityComponent } from './add-activity/add-activity.component';
+import {MaterialModule} from "../shared/material/material.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { AddActivityComponent } from './add-activity/add-activity.component';
   ],
   imports: [
     CommonModule,
-    AgendaRoutingModule
+    AgendaRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class AgendaModule { }
