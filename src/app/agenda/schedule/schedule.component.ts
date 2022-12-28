@@ -81,16 +81,20 @@ export class ScheduleComponent implements OnInit {
         })
     })
   }
+  edit(id:number){
+
+  }
 
   datePick(){
     let date=this.entityForm.controls['date'].value;
-    console.log(date.getDay())
-    this.datum=date.getDay()+'/'+date.getMonth()+'/'+date.getYeaer();
 
-    this.date.year=date.year;
-    this.date.day=date.day;
-    this.date.month=date.month;
-    console.log('date is picked')
+
+    this.datum=date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getYear();
+
+    this.date.year=date.getFullYear();
+    this.date.day=date.getDate();
+    this.date.month=date.getMonth()+1;
+
     console.log(this.date)
 
     this.activityService.getAllActivitiesOfToday(this.date, this.user.id)
