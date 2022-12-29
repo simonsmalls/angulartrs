@@ -22,8 +22,8 @@ export class NavComponent {
 
   disconnect(){
     this.employeeService.connectedUser=null;
-    this.router.navigate(["/login"])
-    console.log("user gets disconected")
+    this.router.navigate(["/login"]);
+    console.log("user gets disconnected");
   }
 
 }
