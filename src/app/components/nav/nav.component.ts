@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EmployeeService } from 'src/app/service/employee.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav',
@@ -7,7 +8,8 @@ import { EmployeeService } from 'src/app/service/employee.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  constructor(private employeeService:EmployeeService) {
+  constructor(private employeeService:EmployeeService,
+              private router: Router) {
   }
 
   userConnected():boolean{
@@ -17,9 +19,10 @@ export class NavComponent {
       return false;
     }
   }
-  
+
   disconnect(){
     this.employeeService.connectedUser=null;
+    this.router.navigate(["/login"])
     console.log("user gets disconected")
   }
 
