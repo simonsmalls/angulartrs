@@ -22,6 +22,9 @@ export class ActivityService {
   addActivity( activity:Activity) {
     return this.httpClient.post<void>(this.url+ 'add',activity);
   }
+  deleteActivityById( id:number) {
+    return this.httpClient.delete<void>(this.url+ id);
+  }
 
   getAllActivitiesOfToday( date:DateDTO,id:number ):Observable<Activity[]> {
 

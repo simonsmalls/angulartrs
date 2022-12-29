@@ -7,7 +7,8 @@ export class Activity {
   employeeId: number;
   employeeName:string;
   categoryName: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
+  startDate:Date;
   timeSpent: number;
 }
