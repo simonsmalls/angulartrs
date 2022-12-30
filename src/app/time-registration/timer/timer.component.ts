@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {EmployeeService} from "../../service/employee.service";
 import {Router} from "@angular/router";
 import {Employee} from "../../model/employee.model";
+import {ConsultantService} from "../../service/consultant.service";
+import {WorkingTime} from "../../model/working-time.model";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-timer',
@@ -11,9 +14,13 @@ import {Employee} from "../../model/employee.model";
 export class TimerComponent implements OnInit{
 
   user:Employee;
+  dataSource: WorkingTime[];
+  displayedColumns: string[];
+
 
   constructor(
     private employeeService: EmployeeService,
+    private consultantService: ConsultantService,
     private router: Router,
   ) {
   }
@@ -22,12 +29,22 @@ export class TimerComponent implements OnInit{
     this.user = this.employeeService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
     console.log(this.user);
+
+    this.consultantService.getWorkingTimesTodayForConsultant(this.user.id)
+      .subscribe((workingtimes) => {
+        this.dataSource = workingtimes;
+        console.log(workingtimes);
+      })
+
+    // make table
+    this.displayedColumns = ['start time', 'end time', 'time worked'];
+
   }
 
   startDay(){
     if (this.user == null) return; //make alert / snackbar
 
-    this.employeeService.startClock(this.user.id).subscribe(
+    this.consultantService.startClock(this.user.id).subscribe(
       (workingTime) => {
         console.log("started: " , workingTime);
       }
@@ -37,7 +54,7 @@ export class TimerComponent implements OnInit{
   endDay(){
     if (this.user == null) return; //make alert / snackbar
 
-    this.employeeService.endClock(this.user.id).subscribe(
+    this.consultantService.endClock(this.user.id).subscribe(
       (workingTime) => {
         console.log("ended: ", workingTime);
       }

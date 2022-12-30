@@ -28,12 +28,6 @@ export class EmployeeService {
     return this.httpClient.get<Employee>(this.url + "id");
   }
 
-  startClock(consultantId: number){
-    return this.httpClient.get<WorkingTime>(this.url + `workingtime/start/${consultantId}`);
-  }
 
-  endClock(consultantId: number){
-    return this.httpClient.get<WorkingTime>(this.url + `workingtime/end/${consultantId}`);
-  }
 
 }
