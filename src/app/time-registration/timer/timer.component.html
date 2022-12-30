@@ -14,7 +14,7 @@
 
     <ng-container matColumnDef="time worked">
       <th mat-header-cell *matHeaderCellDef>Gewerkte tijd</th>
-      <td mat-cell *matCellDef="let element" >{{element.timeWorkedMin}}</td>
+      <td mat-cell *matCellDef="let element" >{{element.timeWorkedMin | minsToHrMins}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

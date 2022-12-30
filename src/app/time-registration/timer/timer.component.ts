@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {Employee} from "../../model/employee.model";
 import {ConsultantService} from "../../service/consultant.service";
 import {WorkingTime} from "../../model/working-time.model";
-import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-timer',

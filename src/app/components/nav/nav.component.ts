@@ -14,7 +14,7 @@ export class NavComponent {
 
   userConnected():boolean{
     if(this.employeeService.connectedUser==null ) {
-      return true
+      return true;
     }else{
       return false;
     }
