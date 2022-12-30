@@ -29,7 +29,17 @@ export class TimerComponent implements OnInit{
 
     this.employeeService.startClock(this.user.id).subscribe(
       (workingTime) => {
-        console.log(workingTime);
+        console.log("started: " , workingTime);
+      }
+    )
+  }
+
+  endDay(){
+    if (this.user == null) return; //make alert / snackbar
+
+    this.employeeService.endClock(this.user.id).subscribe(
+      (workingTime) => {
+        console.log("ended: ", workingTime);
       }
     )
   }

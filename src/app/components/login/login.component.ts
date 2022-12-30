@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit  {
-    hide:boolean=true
+  hide:boolean=true
   entityForm: FormGroup;
 
 
@@ -39,17 +39,17 @@ export class LoginComponent implements OnInit  {
     loginmodel.password = this.entityForm.controls['password'].value;
     loginmodel.abbreviation = this.entityForm.controls['username'].value;
 
-    console.log(loginmodel.password)
-    console.log(loginmodel.abbreviation)
-
-    this.employeeService.checkLogin(loginmodel).subscribe((c)=>{
-      if(c!=null){
-        this.employeeService.connectedUser=c;
-        this.router.navigate(['/agenda/check']);
-      }
-      }
-
-    )
-
+    this.employeeService.checkLogin(loginmodel)
+      .subscribe({
+        next: (e) => {
+          if (e!=null){
+            this.employeeService.connectedUser = e;
+            this.router.navigate(['/agenda/check']);
+          }
+        },
+        error: () => {
+          this.entityForm.controls['password'].reset();
+        }
+      });
   }
 }
