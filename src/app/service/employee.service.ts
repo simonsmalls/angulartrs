@@ -12,7 +12,7 @@ import {WorkingTime} from "../model/working-time.model";
 export class EmployeeService {
 
   url:string='http://localhost:8888/api/employees/';
-  connectedUser:Employee;
+
 
   constructor(protected httpClient: HttpClient) { }
 
@@ -20,9 +20,7 @@ export class EmployeeService {
     return this.httpClient.get<Employee[]>(this.url);
   }
 
-  checkLogin( login:LoginModel): Observable<Employee> {
-    return this.httpClient.post<Employee>(this.url+ 'login',login);
-  }
+
 
   findById(id: number): Observable<Employee> {
     return this.httpClient.get<Employee>(this.url + "id");

@@ -8,6 +8,9 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Employee} from "../../model/employee.model";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogOverviewExampleDialog} from "../dialog-overview-example-dialog/dialog-overview-example-dialog.component";
+import {OathService} from "../../service/oath.service";
 
 
 @Component({
@@ -27,16 +30,17 @@ export class ScheduleComponent implements OnInit {
 
 
   constructor(
-    private employeeService:EmployeeService,
+    private oathService:OathService,
     private activityService:ActivityService,
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
     private router:Router,
     private fb:FormBuilder,
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
-    this.user=this.employeeService.connectedUser;
+    this.user=this.oathService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
 
     this._locale='fr';
@@ -60,7 +64,7 @@ export class ScheduleComponent implements OnInit {
   }
 
   connected():boolean{
-    if(this.employeeService.connectedUser==null){
+    if(this.oathService.connectedUser==null){
       return false
     }
     return true;
@@ -69,25 +73,37 @@ export class ScheduleComponent implements OnInit {
     this.router.navigate(['agenda/toevoegen'])
   }
 
-  delete(id:number){
-    this.activityService.deleteActivityById(id).subscribe((c)=>{
+  openDialog(id:number): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: id
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
       this.activityService.getAllActivitiesOfToday(this.date, this.user.id)
         .subscribe((c)=>{
           this.activities=c;
 
           this.dataSource.data=c;
         })
-    })
+
+
+    });
+  }
+
+  delete(id:number){
+    this.openDialog(id)
   }
   edit(id:number){
-
+    this.router.navigate(['agenda/'+id+'/edit'])
   }
 
   datePick(){
     let date=this.entityForm.controls['date'].value;
 
 
-    this.datum=date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getYear();
+    this.datum=date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
 
     this.date.year=date.getFullYear();
     this.date.day=date.getDate();
@@ -104,3 +120,6 @@ export class ScheduleComponent implements OnInit {
   }
 
 }
+
+
+

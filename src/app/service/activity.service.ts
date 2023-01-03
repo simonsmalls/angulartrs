@@ -22,6 +22,10 @@ export class ActivityService {
   addActivity( activity:Activity) {
     return this.httpClient.post<void>(this.url+ 'add',activity);
   }
+
+  editActivity( activity:Activity) {
+    return this.httpClient.post<void>(this.url+ 'edit',activity);
+  }
   deleteActivityById( id:number) {
     return this.httpClient.delete<void>(this.url+ id);
   }
@@ -33,7 +37,11 @@ export class ActivityService {
 
   getAllActivitiesOfPerson( id):Observable<Activity[]> {
 
-    return this.httpClient.get<Activity[]>(this.url +id);
+    return this.httpClient.get<Activity[]>(this.url+'person/' +id);
+  }
+
+  getById(id:number):Observable<Activity>{
+    return this.httpClient.get<Activity>(this.url +id);
   }
 
 

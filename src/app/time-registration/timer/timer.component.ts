@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Employee} from "../../model/employee.model";
 import {ConsultantService} from "../../service/consultant.service";
 import {WorkingTime} from "../../model/working-time.model";
+import {OathService} from "../../service/oath.service";
 
 @Component({
   selector: 'app-timer',
@@ -18,14 +19,14 @@ export class TimerComponent implements OnInit{
 
 
   constructor(
-    private employeeService: EmployeeService,
+    private oathService: OathService,
     private consultantService: ConsultantService,
     private router: Router,
   ) {
   }
 
   ngOnInit(): void {
-    this.user = this.employeeService.connectedUser;
+    this.user = this.oathService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
     console.log(this.user);
 

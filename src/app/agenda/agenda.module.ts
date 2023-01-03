@@ -5,12 +5,16 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { AddActivityComponent } from './add-activity/add-activity.component';
 import {MaterialModule} from "../shared-module/material/material.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import { DialogOverviewExampleDialog } from './dialog-overview-example-dialog/dialog-overview-example-dialog.component';
+import { ActivityComponent } from './activity/activity.component';
 
 
 @NgModule({
   declarations: [
     ScheduleComponent,
-    AddActivityComponent
+    AddActivityComponent,
+    DialogOverviewExampleDialog,
+    ActivityComponent
   ],
   imports: [
     CommonModule,
