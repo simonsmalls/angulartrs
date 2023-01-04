@@ -79,10 +79,9 @@ export class AddActivityComponent {
       this.entityForm.controls['starttime'].setValue(this.activity.startTime)
       this.entityForm.controls['project'].setValue(this.activity.projectId)
       this.entityForm.controls['date'].setValue(this.activity.startDate)
-     this.entityForm.controls['description'].setValue(this.activity.description)
+      this.entityForm.controls['description'].setValue(this.activity.description)
       this.entityForm.controls['category'].setValue(this.activity.categoryName);
       this.toevoegen='bewerken'
-      console.log(this.activity)
     }
 
   }
