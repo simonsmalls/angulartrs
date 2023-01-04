@@ -1,0 +1,76 @@
+<div *ngIf="connected()">
+
+
+  <form [formGroup]="entityForm">
+    <label>Startdatum:</label>
+    <input type="date"  formControlName="startDate">
+    <br>
+    <label>Einddatum:</label>
+    <input type="date"  formControlName="endDate">
+    <br>
+    <button type="submit" (click)="submit()">Indienen</button>
+  </form>
+
+  <table>
+    <caption>Projecten</caption>
+    <thead>
+      <th>Naam</th>
+      <th>Cliënt</th>
+      <th>Beschrijving</th>
+      <th>Facturatie</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let project of filteredProjects">
+        <td>{{project.name}}</td>
+        <td>{{project.clientName}}</td>
+        <td>{{project.description}}</td>
+        <td><button class="btn btn-primary" type="submit" (click)="showInvoices(project.id)">Laat facturen zien</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <table *ngIf="ongoingInvoices">
+    <caption>Openstaande facturen</caption>
+    <thead>
+    <th>Datum</th>
+    <th>Totale Prijs</th>
+    <th>Naam</th>
+    <th>Afronden</th>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let invoice of ongoingInvoices">
+      <td>{{invoice.date}}</td>
+      <td>{{invoice.totalPrice}}</td>
+      <td>{{invoice.projectName}}</td>
+      <td><button class="btn btn-primary" type="submit" (click)="finalise(invoice.id)">Factuur afronden</button></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <table *ngIf="historyInvoices">
+    <caption>Factureringsgeschiedenis</caption>
+    <thead>
+    <th>Datum</th>
+    <th>Totale prijs</th>
+    <th>Name</th>
+    <th>Betaald</th>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let invoice of historyInvoices">
+      <td>{{invoice.date}}</td>
+      <td>{{invoice.totalPrice}}</td>
+      <td>{{invoice.projectName}}</td>
+      <td>Betaald</td>
+    </tr>
+    </tbody>
+  </table>
+
+
+
+</div>

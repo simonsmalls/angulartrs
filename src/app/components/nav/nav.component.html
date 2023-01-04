@@ -23,6 +23,14 @@
   </div>
 
   <div>
+    <ul *ngIf="!userConnected()">
+      <li>
+        <a routerLink="/invoices">Invoice</a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
   <ul *ngIf="!userConnected()" class="right-nav">
     <li>
       <a (click)="disconnect()">Logout</a>

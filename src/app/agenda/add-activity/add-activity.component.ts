@@ -12,6 +12,7 @@ import {Category} from "../../model/category.model";
 import {CategoryService} from "../../service/category.service";
 import {ProjectService} from "../../service/project.service";
 import {OathService} from "../../service/oath.service";
+import {InvoiceService} from "../../service/invoice.service";
 
 
 
@@ -38,6 +39,7 @@ export class AddActivityComponent {
     private activityService:ActivityService,
     private categoryService:CategoryService,
     private projectService:ProjectService,
+    private invoiceService:InvoiceService,
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
     private router:Router,
@@ -111,6 +113,11 @@ export class AddActivityComponent {
       this.activityService.addActivity(activity).subscribe((c) => {
         console.log("activity send")
       });
+
+      this.invoiceService.updateProjectInvoice(activity.projectId).subscribe((c) => {
+        console.log("invoice updated");
+      });
+
     }else{
       this.activity.categoryName = this.entityForm.controls['category'].value;
 
@@ -123,6 +130,10 @@ export class AddActivityComponent {
 
       this.activityService.editActivity(this.activity).subscribe((c) => {
         console.log("activity send")
+      });
+
+      this.invoiceService.updateProjectInvoice(this.activity.projectId).subscribe((c) => {
+        console.log("invoice updated");
       });
     }
   }
