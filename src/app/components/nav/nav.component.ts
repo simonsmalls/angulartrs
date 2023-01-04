@@ -24,9 +24,11 @@ export class NavComponent {
     }
   }
   isConsultant(){
-     if(this.oathService.connectedUser.hourlyRate!=0){
 
+     if(this.oathService.connectedUser.hourlyRate!=0){
+      return true
      }
+     return false
   }
 
   disconnect(){

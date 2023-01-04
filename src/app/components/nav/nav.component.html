@@ -7,7 +7,7 @@
   <div>
     <ul >
       <li>
-        <a>TRS</a>
+        <span>TRS</span>
       </li>
     </ul>
   </div>
@@ -16,7 +16,7 @@
     <li>
       <a routerLink="/agenda/check">Agenda</a>
     </li>
-    <li *ngIf>
+    <li *ngIf="isConsultant()">
       <a routerLink="/time-registration">Tijd registratie</a>
     </li>
   </ul>
