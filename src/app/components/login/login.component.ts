@@ -4,7 +4,7 @@ import {EmployeeService} from "../../service/employee.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { LoginModel } from 'src/app/model/login.model';
 import { Router } from '@angular/router';
-import {OathService} from "../../service/oath.service";
+import {AuthService} from "../../service/auth.service";
 
 
 @Component({
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit  {
   entityForm: FormGroup;
 
 
-  constructor(private oathService:OathService,
+  constructor(private oathService:AuthService,
               private fb:FormBuilder,
               private router:Router,
 

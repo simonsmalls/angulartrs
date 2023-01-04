@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ActivityService} from "../../service/activity.service";
+import {ActivityService} from "../../../service/activity.service";
 
 @Component({
   selector: 'app-dialog-overview-example-dialog',

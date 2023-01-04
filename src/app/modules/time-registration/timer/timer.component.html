@@ -1,4 +1,9 @@
 <div>
+  <button mat-raised-button (click)="startDay()">Begin werkdag</button>
+  <button mat-raised-button (click)="endDay()">Stop werkdag</button>
+</div>
+
+<div>
   <!-- Timer with existing times today -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="start time">
@@ -23,8 +28,5 @@
   </table>
 </div>
 
-<div>
-  <button mat-raised-button (click)="startDay()">Begin werkdag</button>
-  <button mat-raised-button (click)="endDay()">Stop werkdag</button>
-</div>
+
 

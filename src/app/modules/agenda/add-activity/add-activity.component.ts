@@ -1,17 +1,15 @@
 import {Component, Inject, Input} from '@angular/core';
-import {Activity} from "../../model/activity.model";
+import {Activity} from "../../../model/activity.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {EmployeeService} from "../../service/employee.service";
-import {ActivityService} from "../../service/activity.service";
+import {ActivityService} from "../../../service/activity.service";
 import {DateAdapter, MAT_DATE_LOCALE} from "@angular/material/core";
 import {Router} from "@angular/router";
-import {DateDTO} from "../../model/date-dto";
-import {Project} from "../../model/project.model";
-import {Category} from "../../model/category.model";
-import {CategoryService} from "../../service/category.service";
-import {ProjectService} from "../../service/project.service";
-import {OathService} from "../../service/oath.service";
+import {Project} from "../../../model/project.model";
+import {Category} from "../../../model/category.model";
+import {CategoryService} from "../../../service/category.service";
+import {ProjectService} from "../../../service/project.service";
+import {AuthService} from "../../../service/auth.service";
 
 
 
@@ -26,15 +24,15 @@ export class AddActivityComponent {
   dataSource = new MatTableDataSource<Activity>();
   entityForm: FormGroup;
   datum:string;
-  user=this.oathService.connectedUser;
+  user=this.authService.connectedUser;
   projects:Project[];
   categories:Category[];
-  @Input()  activity:Activity;
+  @Input() activity:Activity;
   toevoegen:string;
 
 
   constructor(
-    private oathService:OathService,
+    private authService:AuthService,
     private activityService:ActivityService,
     private categoryService:CategoryService,
     private projectService:ProjectService,

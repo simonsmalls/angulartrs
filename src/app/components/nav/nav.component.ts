@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { EmployeeService } from 'src/app/service/employee.service';
 import {Router} from "@angular/router";
-import {OathService} from "../../service/oath.service";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +11,7 @@ import {OathService} from "../../service/oath.service";
 export class NavComponent {
   constructor(
     private employeeService:EmployeeService,
-    private oathService:OathService,
+    private oathService:AuthService,
               private router: Router,
               ) {
   }
@@ -28,12 +28,17 @@ export class NavComponent {
       return false;
     }
   }
+
   isConsultant(){
 
      if(this.oathService.connectedUser.hourlyRate!=0){
       return true
      }
      return false
+  }
+
+  isAccountant(){
+    return (this.oathService.connectedUser.roles.includes("Accountant"));
   }
 
   disconnect(){

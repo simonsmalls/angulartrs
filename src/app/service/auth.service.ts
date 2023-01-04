@@ -7,7 +7,7 @@ import {LoginModel} from "../model/login.model";
 @Injectable({
   providedIn: 'root'
 })
-export class OathService {
+export class AuthService {
 
   url:string='http://localhost:8888/api/employees/';
   connectedUser:Employee;
