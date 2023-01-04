@@ -4,18 +4,29 @@
       <a routerLink="/login">login</a>
     </li>
   </ul>-->
-  <ul>
+  <div>
+    <ul >
+      <li>
+        <span>TRS</span>
+      </li>
+    </ul>
+  </div>
+  <div>
+  <ul *ngIf="!userConnected()">
     <li>
       <a routerLink="/agenda/check">Agenda</a>
     </li>
-    <li>
+    <li *ngIf="isConsultant()">
       <a routerLink="/time-registration">Tijd registratie</a>
     </li>
   </ul>
+  </div>
 
+  <div>
   <ul *ngIf="!userConnected()" class="right-nav">
     <li>
       <a (click)="disconnect()">Logout</a>
     </li>
   </ul>
+  </div>
 </nav>

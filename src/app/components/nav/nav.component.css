@@ -1,7 +1,11 @@
 nav {
   background-color: darkgrey;
   padding-left: 20px;
+  padding-right: 20px;
   padding-bottom: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 ul {
@@ -9,7 +13,8 @@ ul {
   list-style-type: none;
   font-weight: bold;
   display: flex;
-  flex-direction: row;
+
+
 }
 ul li {
   padding-left : 15px;
@@ -18,6 +23,12 @@ ul li {
   flex-direction: row;
 }
 a {
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+
+}
+span {
   color: black;
   font-size: 20px;
   text-decoration: none;
@@ -33,6 +44,6 @@ a:hover {
 }
 
 .right-nav {
-  margin-left: auto;
+  margin-right: auto;
   text-decoration: gray;
 }

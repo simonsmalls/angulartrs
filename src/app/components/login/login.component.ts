@@ -4,6 +4,7 @@ import {EmployeeService} from "../../service/employee.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { LoginModel } from 'src/app/model/login.model';
 import { Router } from '@angular/router';
+import {AuthService} from "../../service/auth.service";
 
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit  {
   entityForm: FormGroup;
 
 
-  constructor(private employeeService:EmployeeService,
+  constructor(private oathService:AuthService,
               private fb:FormBuilder,
               private router:Router,
 
@@ -39,11 +40,11 @@ export class LoginComponent implements OnInit  {
     loginmodel.password = this.entityForm.controls['password'].value;
     loginmodel.abbreviation = this.entityForm.controls['username'].value;
 
-    this.employeeService.checkLogin(loginmodel)
+    this.oathService.checkLogin(loginmodel)
       .subscribe({
         next: (e) => {
           if (e!=null){
-            this.employeeService.connectedUser = e;
+            this.oathService.connectedUser = e;
             this.router.navigate(['/agenda/check']);
           }
         },

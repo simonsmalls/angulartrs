@@ -5,6 +5,7 @@ import {Employee} from "../../../model/employee.model";
 import {ConsultantService} from "../../../service/consultant.service";
 import {WorkingTime} from "../../../model/working-time.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthService} from "../../../service/auth.service";
 
 
 @Component({
@@ -22,6 +23,7 @@ export class TimerComponent implements OnInit{
 
   constructor(
     private employeeService: EmployeeService,
+    private authService: AuthService,
     private consultantService: ConsultantService,
     private router: Router,
     private snackBar: MatSnackBar,
@@ -29,7 +31,7 @@ export class TimerComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.user = this.employeeService.connectedUser;
+    this.user = this.authService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
     console.log(this.user);
 
