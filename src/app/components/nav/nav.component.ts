@@ -23,12 +23,17 @@ export class NavComponent {
       return false;
     }
   }
+
   isConsultant(){
 
      if(this.oathService.connectedUser.hourlyRate!=0){
       return true
      }
      return false
+  }
+
+  isAccountant(){
+    return (this.oathService.connectedUser.roles.includes("Accountant"));
   }
 
   disconnect(){
