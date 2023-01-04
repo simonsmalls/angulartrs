@@ -3,4 +3,5 @@ export class ConsultantSalary {
   name:String;
   abbreviation:String;
   salary:number;
+  minutesWorked: number;
 }

@@ -18,7 +18,7 @@ export class SalariesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.displayedColumns = ["abbreviation", "name", "salary"];
+    this.displayedColumns = ["abbreviation", "name", "salary", "minutesWorked"];
     let date = new Date();
     // get the month before (make sure it gets the right year in case it's january)
     date.setMonth(date.getMonth() - 1);
