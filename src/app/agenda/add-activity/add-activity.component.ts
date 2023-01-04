@@ -106,9 +106,11 @@ export class AddActivityComponent {
       activity.startDate = this.entityForm.controls['date'].value;
       activity.description = this.entityForm.controls['description'].value;
 
-
+      activity.startDate.setHours(1,1,1);
       this.activityService.addActivity(activity).subscribe((c) => {
-        console.log("activity send")
+        console.log("activity send");
+        console.log(activity)
+        this.router.navigate(['/agenda/check'])
       });
     }else{
       this.activity.categoryName = this.entityForm.controls['category'].value;
@@ -119,9 +121,10 @@ export class AddActivityComponent {
       this.activity.startDate = this.entityForm.controls['date'].value;
       this.activity.description = this.entityForm.controls['description'].value;
 
-
+    this.activity.startDate.setHours(1,1,1);
       this.activityService.editActivity(this.activity).subscribe((c) => {
         console.log("activity send")
+        this.router.navigate(['/agenda/check'])
       });
     }
   }

@@ -18,8 +18,13 @@ export class NavComponent {
 
   userConnected():boolean{
     if(this.oathService.connectedUser==null ) {
+
+      if (this.router.url!= '/login'){
+        this.router.navigate(["/login"]);
+      }
       return true;
     }else{
+
       return false;
     }
   }
@@ -32,7 +37,7 @@ export class NavComponent {
   }
 
   disconnect(){
-    this.oathService.connectedUser=null;
+    this.oathService.logout();
     this.router.navigate(["/login"]);
     console.log("user gets disconnected");
   }

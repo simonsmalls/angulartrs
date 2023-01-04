@@ -26,7 +26,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           if (error.error instanceof ErrorEvent){
             // client side error
             errorMessage =  `Error: ${error.error.message}`;
-            this.snackBar.open(errorMessage, 'X', {panelClass: ['error']});
+            this.snackBar.open(errorMessage, 'X', {panelClass: ['error'],duration:10000, verticalPosition:"top"});
 
             return throwError(errorMessage);
           } else {
@@ -37,7 +37,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             apiError.title = error.error.title;
             apiError.status = error.error.status;
             apiError.description = error.error.description;
-            this.snackBar.open(apiError.toString(), 'X', {panelClass: ['error']});
+            this.snackBar.open(apiError.toString(), 'X', {panelClass: ['error'],
+            duration:10000,verticalPosition:"top"});
 
             return throwError(apiError.toString())
           }

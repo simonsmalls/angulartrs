@@ -4,7 +4,7 @@
 <div *ngIf="connected()">
 
   <mat-form-field appearance="fill" [formGroup]="entityForm">
-    <mat-label>kies een dag</mat-label>
+    <mat-label>kies een datum</mat-label>
     <input (dateChange)="datePick()" matInput [matDatepicker]="dp" formControlName="date" >
     <mat-hint>DD/MM/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>

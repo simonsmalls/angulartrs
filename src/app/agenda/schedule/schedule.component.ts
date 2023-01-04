@@ -43,7 +43,7 @@ export class ScheduleComponent implements OnInit {
     this.user=this.oathService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
 
-    this._locale='fr';
+    this._locale='nl';
     this._adapter.setLocale(this._locale);
 
     this.date.year=2023;
@@ -70,7 +70,7 @@ export class ScheduleComponent implements OnInit {
     return true;
   }
   add(){
-    this.router.navigate(['agenda/toevoegen'])
+    this.router.navigate(['/agenda/add'])
   }
 
   openDialog(id:number): void {
