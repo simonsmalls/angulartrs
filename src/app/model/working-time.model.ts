@@ -3,8 +3,8 @@ import {Time} from "@angular/common";
 export class WorkingTime {
   id: number;
   date: Date;
-  startTime: Time;
-  endTime: Time;
+  startTime: string;
+  endTime: string;
   timeWorkedMin: number;
   consultantId: number;
   consultantName: string;
