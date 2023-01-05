@@ -19,6 +19,7 @@ export class TimerComponent implements OnInit{
   dataSource: WorkingTime[];
   displayedColumns: string[];
   openWorkTime: WorkingTime;
+  hasOpenWorkTime: boolean;
 
 
   constructor(
@@ -52,6 +53,7 @@ export class TimerComponent implements OnInit{
     this.consultantService.getOpenWorkingTimeTodayForConsultant(this.user.id)
       .subscribe(workingtime =>  {
         this.openWorkTime = workingtime;
+        this.hasOpenWorkTime = (this.openWorkTime != null);
         console.log('current: ', workingtime)});
   }
 
@@ -61,8 +63,6 @@ export class TimerComponent implements OnInit{
     this.consultantService.startClock(this.user.id).subscribe(
       (workingTime) => {
         console.log("started: " , workingTime);
-        this.openWorkTime = workingTime;
-
         this.loadWorkingTimes();
       }
     );
