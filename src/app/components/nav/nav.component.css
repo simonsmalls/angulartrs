@@ -27,6 +27,16 @@ a {
   font-size: 20px;
   text-decoration: none;
 
+
+}
+.middle-nav{
+  text-decoration: underline;
+}
+span {
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+
 }
 a:hover {
   color : darkgreen;

@@ -13,7 +13,6 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     CommonModule,
     MaterialModule,
-    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

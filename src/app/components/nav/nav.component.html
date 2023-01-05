@@ -1,23 +1,21 @@
 <nav>
-  <!--<ul *ngIf="userConnected()">
-    <li>
-      <a routerLink="/login">login</a>
-    </li>
-  </ul>-->
   <div>
     <ul >
       <li>
-        <a>TRS</a>
+        <span>TRS</span>
       </li>
     </ul>
   </div>
   <div>
   <ul *ngIf="!userConnected()">
     <li>
-      <a routerLink="/agenda/check">Agenda</a>
+      <a class="middle-nav" routerLink="/agenda/check">Agenda</a>
     </li>
-    <li *ngIf>
-      <a routerLink="/time-registration">Tijd registratie</a>
+    <li *ngIf="isConsultant()">
+      <a class="middle-nav" routerLink="/time-registration">Tijdsregistratie</a>
+    </li>
+    <li *ngIf="isAccountant()">
+      <a routerLink="/salaries">Salarissen</a>
     </li>
   </ul>
   </div>

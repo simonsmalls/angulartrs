@@ -2,15 +2,14 @@ import {Component, Inject, OnInit} from '@angular/core';
 import { Activity } from 'src/app/model/activity.model';
 import { DateDTO } from 'src/app/model/date-dto';
 import { ActivityService } from 'src/app/service/activity.service';
-import { EmployeeService } from 'src/app/service/employee.service';
 import {MatTableDataSource} from "@angular/material/table";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Employee} from "../../model/employee.model";
+import {Employee} from "../../../model/employee.model";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogOverviewExampleDialog} from "../dialog-overview-example-dialog/dialog-overview-example-dialog.component";
-import {OathService} from "../../service/oath.service";
+import {AuthService} from "../../../service/auth.service";
 
 
 @Component({
@@ -30,7 +29,7 @@ export class ScheduleComponent implements OnInit {
 
 
   constructor(
-    private oathService:OathService,
+    private authService:AuthService,
     private activityService:ActivityService,
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
@@ -40,10 +39,10 @@ export class ScheduleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user=this.oathService.connectedUser;
+    this.user=this.authService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
 
-    this._locale='fr';
+    this._locale='nl';
     this._adapter.setLocale(this._locale);
 
     this.date.year=2023;
@@ -64,13 +63,13 @@ export class ScheduleComponent implements OnInit {
   }
 
   connected():boolean{
-    if(this.oathService.connectedUser==null){
+    if(this.authService.connectedUser==null){
       return false
     }
     return true;
   }
   add(){
-    this.router.navigate(['agenda/toevoegen'])
+    this.router.navigate(['/agenda/add'])
   }
 
   openDialog(id:number): void {

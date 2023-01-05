@@ -1,11 +1,15 @@
 import {Component, Inject, Input} from '@angular/core';
-import {Activity} from "../../model/activity.model";
+import {Activity} from "../../../model/activity.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {EmployeeService} from "../../service/employee.service";
-import {ActivityService} from "../../service/activity.service";
+import {ActivityService} from "../../../service/activity.service";
 import {DateAdapter, MAT_DATE_LOCALE} from "@angular/material/core";
 import {Router} from "@angular/router";
+import {Project} from "../../../model/project.model";
+import {Category} from "../../../model/category.model";
+import {CategoryService} from "../../../service/category.service";
+import {ProjectService} from "../../../service/project.service";
+import {AuthService} from "../../../service/auth.service";
 import {DateDTO} from "../../model/date-dto";
 import {Project} from "../../model/project.model";
 import {Category} from "../../model/category.model";
@@ -27,19 +31,18 @@ export class AddActivityComponent {
   dataSource = new MatTableDataSource<Activity>();
   entityForm: FormGroup;
   datum:string;
-  user=this.oathService.connectedUser;
+  user=this.authService.connectedUser;
   projects:Project[];
   categories:Category[];
-  @Input()  activity:Activity;
+  @Input() activity:Activity;
   toevoegen:string;
 
 
   constructor(
-    private oathService:OathService,
+    private authService:AuthService,
     private activityService:ActivityService,
     private categoryService:CategoryService,
     private projectService:ProjectService,
-    private invoiceService:InvoiceService,
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
     private router:Router,
@@ -79,12 +82,11 @@ export class AddActivityComponent {
     if (this.activity){
       this.entityForm.controls['endtime'].setValue(this.activity.endTime);
       this.entityForm.controls['starttime'].setValue(this.activity.startTime)
-      this.entityForm.controls['project'].setValue(this.activity.projectName)
+      this.entityForm.controls['project'].setValue(this.activity.projectId)
       this.entityForm.controls['date'].setValue(this.activity.startDate)
-     this.entityForm.controls['description'].setValue(this.activity.description)
+      this.entityForm.controls['description'].setValue(this.activity.description)
       this.entityForm.controls['category'].setValue(this.activity.categoryName);
       this.toevoegen='bewerken'
-      console.log(this.activity)
     }
 
   }
@@ -109,9 +111,11 @@ export class AddActivityComponent {
       activity.startDate = this.entityForm.controls['date'].value;
       activity.description = this.entityForm.controls['description'].value;
 
-
+      activity.startDate.setHours(1,1,1);
       this.activityService.addActivity(activity).subscribe((c) => {
-        console.log("activity send")
+        console.log("activity send");
+        console.log(activity)
+        this.router.navigate(['/agenda/check'])
       });
 
       this.invoiceService.updateProjectInvoice(activity.projectId).subscribe((c) => {
@@ -127,9 +131,10 @@ export class AddActivityComponent {
       this.activity.startDate = this.entityForm.controls['date'].value;
       this.activity.description = this.entityForm.controls['description'].value;
 
-
+    this.activity.startDate.setHours(1,1,1);
       this.activityService.editActivity(this.activity).subscribe((c) => {
         console.log("activity send")
+        this.router.navigate(['/agenda/check'])
       });
 
       this.invoiceService.updateProjectInvoice(this.activity.projectId).subscribe((c) => {

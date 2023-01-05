@@ -11,4 +11,5 @@ export class Activity {
   endTime: string;
   startDate:Date;
   timeSpent: number;
+  id:number;
 }

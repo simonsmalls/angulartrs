@@ -6,7 +6,7 @@ import {ActivityComponent} from "./activity/activity.component";
 
 const routes: Routes = [
   {path:'check', component:ScheduleComponent  },
-  {path:'toevoegen', component:ActivityComponent },
+  {path:'add', component:ActivityComponent },
   {path: '', redirectTo: '/agenda/check', pathMatch:'full'},
   { path: ':id/edit', component: ActivityComponent },
 

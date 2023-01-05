@@ -8,7 +8,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpErrorInterceptor } from './errorhandling/http-error-interceptor';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {SharedModuleModule} from "./shared-module/shared-module.module";
+import {SharedModuleModule} from "./modules/shared-module/shared-module.module";
 
 
 @NgModule({

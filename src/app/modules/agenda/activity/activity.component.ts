@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormControl} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
-import {Activity} from "../../model/activity.model";
-import {ActivityService} from "../../service/activity.service";
+import {Activity} from "../../../model/activity.model";
+import {ActivityService} from "../../../service/activity.service";
 
 @Component({
   selector: 'app-activity',
