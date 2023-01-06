@@ -7,7 +7,7 @@
     </ul>
   </div>
   <div>
-  <ul *ngIf="!userConnected()">
+  <ul *ngIf="userConnected()">
     <li>
       <a class="middle-nav" routerLink="/agenda/check">Agenda</a>
     </li>
@@ -18,13 +18,16 @@
       <a class="middle-nav"  routerLink="/salaries">Salarissen</a>
     </li>
     <li *ngIf="isManager()">
-      <a class="middle-nav"  routerLink="/analyze">Analyze</a>
+      <a class="middle-nav"  routerLink="/analyze">Statistieken</a>
     </li>
   </ul>
   </div>
 
   <div>
-  <ul *ngIf="!userConnected()" class="right-nav">
+  <ul *ngIf="userConnected()" class="right-nav">
+    <li>
+      {{user.firstName | titlecase }} {{user.lastName | titlecase}}
+    </li>
     <li>
       <a (click)="disconnect()">Logout</a>
     </li>

@@ -7,6 +7,6 @@ export class ApiError {
   //list of validation errors
 
   toString(){
-    return `Error: ${this.title}\nStatus: ${this.status}\nDescription: ${this.description}\n`;
+    return `Something went wrong! ${this.title}\n - ${this.description}\n`;
   }
 }
