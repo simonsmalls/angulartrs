@@ -1,15 +1,19 @@
 <div *ngIf="connected()">
 
 
-  <form [formGroup]="entityForm">
-    <label>Startdatum:</label>
-    <input type="date"  formControlName="startDate">
+  <mat-form-field appearance="fill">
+    <mat-label>Kies periode</mat-label>
+    <mat-date-range-input [formGroup]="entityForm" [rangePicker]="picker">
+      <input matStartDate formControlName="startDate" placeholder="Startdatum">
+      <input matEndDate formControlName="endDate" placeholder="Einddatum">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY ? MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
     <br>
-    <label>Einddatum:</label>
-    <input type="date"  formControlName="endDate">
-    <br>
-    <button type="submit" (click)="submit()">Indienen</button>
-  </form>
+  </mat-form-field>
+
+  <mat-button-toggle (click)="submit()" >Kiezen</mat-button-toggle>
 
   <table>
     <caption>Projecten</caption>
@@ -35,42 +39,46 @@
   <table *ngIf="ongoingInvoices">
     <caption>Openstaande facturen</caption>
     <thead>
+    <th>Cliënt</th>
+    <th>ProjectNaam</th>
     <th>Datum</th>
     <th>Totale Prijs</th>
-    <th>Naam</th>
     <th>Afronden</th>
     </thead>
 
     <tbody>
     <tr *ngFor="let invoice of ongoingInvoices">
+      <td>{{invoice.clientName}}</td>
+      <td>{{invoice.projectName}}</td>
       <td>{{invoice.date}}</td>
       <td>{{invoice.totalPrice}}</td>
-      <td>{{invoice.projectName}}</td>
       <td><button class="btn btn-primary" type="submit" (click)="finalise(invoice.id)">Factuur afronden</button></td>
     </tr>
     </tbody>
   </table>
 
+
   <br>
   <table *ngIf="historyInvoices">
     <caption>Factureringsgeschiedenis</caption>
     <thead>
+    <th>Cliënt</th>
+    <th>Projectnaam</th>
     <th>Datum</th>
     <th>Totale prijs</th>
-    <th>Name</th>
     <th>Betaald</th>
     </thead>
 
     <tbody>
     <tr *ngFor="let invoice of historyInvoices">
+      <td>{{invoice.clientName}}</td>
+      <td>{{invoice.projectName}}</td>
       <td>{{invoice.date}}</td>
       <td>{{invoice.totalPrice}}</td>
-      <td>{{invoice.projectName}}</td>
       <td>Betaald</td>
     </tr>
     </tbody>
   </table>
 
+  </div>
 
-
-</div>
