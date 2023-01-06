@@ -41,6 +41,10 @@ export class NavComponent {
     return (this.oathService.connectedUser.roles.includes("Accountant"));
   }
 
+  isManager() {
+    return (this.oathService.connectedUser.roles.includes("Manager"));
+  }
+
   disconnect(){
     this.oathService.logout();
     this.router.navigate(["/login"]);
