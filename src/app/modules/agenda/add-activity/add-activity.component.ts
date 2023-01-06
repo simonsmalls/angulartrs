@@ -47,7 +47,7 @@ export class AddActivityComponent {
   }
 
   ngOnInit(): void {
-    this._locale='fr';
+    this._locale='nl';
     this._adapter.setLocale(this._locale);
 
 

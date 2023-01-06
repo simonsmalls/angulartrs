@@ -15,7 +15,10 @@
       <a class="middle-nav" routerLink="/time-registration">Tijdsregistratie</a>
     </li>
     <li *ngIf="isAccountant()">
-      <a routerLink="/salaries">Salarissen</a>
+      <a class="middle-nav"  routerLink="/salaries">Salarissen</a>
+    </li>
+    <li *ngIf="isManager()">
+      <a class="middle-nav"  routerLink="/analyze">Analyze</a>
     </li>
   </ul>
   </div>
