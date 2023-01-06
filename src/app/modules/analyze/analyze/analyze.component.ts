@@ -65,6 +65,7 @@ export class AnalyzeComponent {
       );
 
 
+
     })
 /*
     this.companyService.getAll().subscribe((c)=>{
@@ -81,8 +82,7 @@ export class AnalyzeComponent {
         startWith(''),
         map(value => this._filter(value || '',this.optionsEmployees)),
       );
-      console.log(this.filteredOptionsEmployees)
-      console.log(this.optionsEmployees)
+
 
     })
 
@@ -105,16 +105,41 @@ export class AnalyzeComponent {
 
     return options.filter(option => option.toLowerCase().includes(filterValue));
   }
+  getProjectByName(name:String):number{
+
+    for(let project of this.projects){
+      if (name==project.name) {
+        return project.id
+      }
+    }
+
+    return null;
+  }
+  getEmployeeByName(name:String):number{
+
+    for(let employee of this.employees){
+      if (name==(employee.firstName+' '+employee.lastName)) {
+        return employee.id
+      }
+    }
+
+    return null;
+  }
   analyze(){
 
     let form:AnalyzeForm=new AnalyzeForm();
     form.start= this.entityForm.controls['startdate'].value
-    form.start.setHours(1,1,1,1);
     form.end= this.entityForm.controls['enddate'].value
-    form.end.setHours(1,1,1,1);
+    if(form.start!=null && form.end!=null) {
+      form.start.setHours(1, 1, 1, 1);
+      form.end.setHours(1,1,1,1);
+    }
+
     form.client_Id= this.entityForm.controls['client'].value
-    form.project_Id= this.entityForm.controls['project'].value
-    form.employee_Id= this.entityForm.controls['employee'].value
+    let projectName=this.entityForm.controls['project'].value;
+    form.project_Id= this.getProjectByName(projectName);
+    let employeename=this.entityForm.controls['employee'].value;
+    form.employee_Id= this.getEmployeeByName(employeename)
 
     this.analyzeService.analyze(form).subscribe((c)=>{
       this.analysis=c;

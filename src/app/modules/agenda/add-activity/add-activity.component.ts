@@ -57,7 +57,7 @@ export class AddActivityComponent {
       starttime: [null,Validators.required],
       endtime: [null,Validators.required],
       category: [null,Validators.required],
-      project: [null,Validators.required],
+      project: [null],
       name: [null],
       description: [null],
 
@@ -118,8 +118,8 @@ export class AddActivityComponent {
       this.activity.projectId = this.entityForm.controls['project'].value;
       this.activity.startDate = this.entityForm.controls['date'].value;
       this.activity.description = this.entityForm.controls['description'].value;
-
-    this.activity.startDate.setHours(1,1,1);
+    if(! (typeof(this.activity.startDate)== "string")){
+    this.activity.startDate.setHours(1,1,1);}
       this.activityService.editActivity(this.activity).subscribe((c) => {
         console.log("activity send")
         this.router.navigate(['/agenda/check'])
