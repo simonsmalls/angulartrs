@@ -10,10 +10,10 @@ export class MinsToHrMinsPipe implements PipeTransform {
     let hours = Math.floor(value/60);
     let mins = value%60;
 
-    if (hours == 0 && mins == 0) return "nog steeds open";
+    if (hours == 0 && mins == 0) return "-";
     else if (hours != 0 && mins ==0) return hours + " uur";
 
-    return (hours == 0 ? mins + " mins" : hours + " uur " + mins + " mins");
+    return (hours == 0 ? mins + " min" : hours + " uur " + mins + " min");
   }
 
 }

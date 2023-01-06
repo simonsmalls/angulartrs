@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,7 +9,10 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpErrorInterceptor } from './errorhandling/http-error-interceptor';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {SharedModuleModule} from "./modules/shared-module/shared-module.module";
+import {registerLocaleData} from "@angular/common";
+import localeNlBE from '@angular/common/locales/nl-BE';
 
+registerLocaleData(localeNlBE);
 
 @NgModule({
     declarations: [
@@ -28,7 +31,8 @@ import {SharedModuleModule} from "./modules/shared-module/shared-module.module";
             provide: HTTP_INTERCEPTORS,
             useClass: HttpErrorInterceptor,
             multi: true
-        }
+        },
+        { provide: LOCALE_ID, useValue: 'nl-BE'}
     ],
     exports: [
 
