@@ -13,44 +13,44 @@ export class NavComponent {
   user:Employee;
   constructor(
     private employeeService:EmployeeService,
-    private oathService:AuthService,
+    private authService:AuthService,
               private router: Router,
               ) {
-    this.user=this.oathService.connectedUser;
+    this.user=this.authService.connectedUser;
   }
 
   userConnected():boolean{
-    if(this.oathService.connectedUser==null ) {
+    if(this.authService.connectedUser==null ) {
 
       if (this.router.url!= '/login'){
         this.router.navigate(["/login"]);
       }
 
-      return true;
-    }else{
-      this.user=this.oathService.connectedUser;
       return false;
+    }else{
+      this.user=this.authService.connectedUser;
+      return true;
     }
   }
 
   isConsultant(){
 
-     if(this.oathService.connectedUser.hourlyRate!=0){
+     if(this.authService.connectedUser.hourlyRate!=0){
       return true
      }
      return false
   }
 
   isAccountant(){
-    return (this.oathService.connectedUser.roles.includes("Accountant"));
+    return (this.authService.connectedUser.roles.includes("Accountant"));
   }
 
   isManager(){
-    return (this.oathService.connectedUser.roles.includes("Manager"));
+    return (this.authService.connectedUser.roles.includes("Manager"));
   }
 
   disconnect(){
-    this.oathService.logout();
+    this.authService.logout();
     this.router.navigate(["/login"]);
     console.log("user gets disconnected");
   }
