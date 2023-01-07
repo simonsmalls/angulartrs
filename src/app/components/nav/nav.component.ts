@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EmployeeService } from 'src/app/service/employee.service';
 import {Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
+import {Employee} from "../../model/employee.model";
 
 @Component({
   selector: 'app-nav',
@@ -9,11 +10,13 @@ import {AuthService} from "../../service/auth.service";
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
+  user:Employee;
   constructor(
     private employeeService:EmployeeService,
     private oathService:AuthService,
               private router: Router,
               ) {
+    this.user=this.oathService.connectedUser;
   }
 
   userConnected():boolean{
@@ -22,9 +25,10 @@ export class NavComponent {
       if (this.router.url!= '/login'){
         this.router.navigate(["/login"]);
       }
+
       return true;
     }else{
-
+      this.user=this.oathService.connectedUser;
       return false;
     }
   }

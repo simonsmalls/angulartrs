@@ -4,11 +4,15 @@ import {MinsToHrMinsPipe} from "./pipes/mins-to-hr-mins.pipe";
 import {MaterialModule} from "./material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { PercentMinePipe } from './pipes/percent-mine.pipe';
+
 
 
 @NgModule({
   declarations: [
     MinsToHrMinsPipe,
+    PercentMinePipe,
+
   ],
   imports: [
     CommonModule,
@@ -19,6 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   exports: [
     MinsToHrMinsPipe,
+    PercentMinePipe,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

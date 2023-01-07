@@ -23,7 +23,7 @@ export class ScheduleComponent implements OnInit {
   dataSource = new MatTableDataSource<Activity>();
   displayedColumns: string[] = ['project','category','start time','end time','edit','delete'];
   entityForm: FormGroup;
-  datum:string;
+
   user:Employee;
   date:DateDTO=new DateDTO();
 
@@ -40,14 +40,15 @@ export class ScheduleComponent implements OnInit {
 
   ngOnInit(): void {
     this.user=this.authService.connectedUser;
+
     if (this.user == null) this.router.navigate(["/login"]);
 
     this._locale='nl';
     this._adapter.setLocale(this._locale);
 
-    this.date.year=2023;
-    this.date.day=26;
-    this.date.month=12;
+    this.date.year=this.activityService.date.getFullYear();
+    this.date.day=this.activityService.date.getDate();
+    this.date.month=this.activityService.date.getMonth()+1;
 
     this.activityService.getAllActivitiesOfToday(this.date, this.user.id)
       .subscribe((c)=>{
@@ -60,7 +61,8 @@ export class ScheduleComponent implements OnInit {
       date: [null],
 
     })
-    this.datum=this.date.day+'/'+this.date.month+'/'+this.date.year;
+    this.entityForm.controls['date'].setValue(this.activityService.date);
+
   }
 
   connected():boolean{
@@ -101,15 +103,15 @@ export class ScheduleComponent implements OnInit {
 
   datePick(){
     let date=this.entityForm.controls['date'].value;
+    date.setHours(1,1,1);
 
-
-    this.datum=date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
 
     this.date.year=date.getFullYear();
     this.date.day=date.getDate();
     this.date.month=date.getMonth()+1;
 
-    console.log(this.date)
+
+    this.activityService.date=date;
 
     this.activityService.getAllActivitiesOfToday(this.date, this.user.id)
       .subscribe((c)=>{

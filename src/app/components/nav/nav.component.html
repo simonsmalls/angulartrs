@@ -26,6 +26,9 @@
   <div>
   <ul *ngIf="!userConnected()" class="right-nav">
     <li>
+      <span > {{user.firstName}} {{user.lastName}}</span>
+    </li>
+    <li>
       <a (click)="disconnect()">Logout</a>
     </li>
   </ul>

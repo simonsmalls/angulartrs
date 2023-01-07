@@ -37,8 +37,8 @@
     <textarea formControlName="description" matInput></textarea>
   </mat-form-field>
 </div>
-  <mat-button-toggle (click)="back()" >terug</mat-button-toggle>
-  <mat-button-toggle (click)="add()" >activiteit {{toevoegen}}</mat-button-toggle>
+  <button mat-raised-button (click)="back()" >terug</button>
+  <button mat-raised-button  [disabled]="checkForm()" (click)="add() " >activiteit {{toevoegen}}</button>
 </div>
 
 
