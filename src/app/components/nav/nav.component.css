@@ -51,3 +51,7 @@ a:hover {
   margin-right: auto;
   text-decoration: gray;
 }
+
+.active{
+  font-size: 36px;
+}

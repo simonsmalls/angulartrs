@@ -5,6 +5,7 @@ import {MaterialModule} from "./material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { PercentMinePipe } from './pipes/percent-mine.pipe';
+import { TimeStringPipe } from './pipes/time-string.pipe';
 
 
 
@@ -12,6 +13,7 @@ import { PercentMinePipe } from './pipes/percent-mine.pipe';
   declarations: [
     MinsToHrMinsPipe,
     PercentMinePipe,
+    TimeStringPipe,
 
   ],
   imports: [
@@ -24,6 +26,7 @@ import { PercentMinePipe } from './pipes/percent-mine.pipe';
   exports: [
     MinsToHrMinsPipe,
     PercentMinePipe,
+    TimeStringPipe,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
