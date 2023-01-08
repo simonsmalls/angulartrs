@@ -90,11 +90,16 @@
 
   <ng-container matColumnDef="tijd">
     <th mat-header-cell *matHeaderCellDef>  tijd </th>
-    <td mat-cell *matCellDef="let element" >{{element.timeWorked | timeString}}</td>
+    <td mat-cell *matCellDef="let element" >{{element.timeWorked | minsToHrMins}}</td>
   </ng-container>
   <ng-container matColumnDef="percentage">
     <th mat-header-cell *matHeaderCellDef> % van de tijd besteed </th>
     <td mat-cell *matCellDef="let element" >{{element.percent | percentMine}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="money">
+    <th mat-header-cell *matHeaderCellDef> inkomsten </th>
+    <td mat-cell *matCellDef="let element" >{{element.money | currency :'EUR':'symbol':'1.2-2':'nl-BE'}}</td>
   </ng-container>
 
 

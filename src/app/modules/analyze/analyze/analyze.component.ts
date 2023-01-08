@@ -31,7 +31,7 @@ export class AnalyzeComponent {
   projects:Project[];
   employees:Employee[];
   analysis:AnalyzeDTO[];
-  displayedColumns: string[] = ['category','tijd','percentage'];
+  displayedColumns: string[] = ['category','tijd','percentage','money'];
   tableready:boolean=false;
   optionsProjects: string[]
   filteredOptionsProjects: Observable<string[]>;
@@ -145,6 +145,7 @@ export class AnalyzeComponent {
       this.analysis=c;
       this.dataSource.data=c;
       this.tableready=true;
+        console.log(c)
     }
     )
   }
