@@ -29,7 +29,7 @@ export class ProjectsComponent implements OnInit{
   projectId: number;
   displayedColumns: string[] = ['projectName','clientName','description','showInvoices'];
   displayedColumnsOngoingInvoices: string[] = ['clientName','projectName','date','totalPrice', 'finalise'];
-  displayedColumnsClosedInvoices: string[] = ['clientName','projectName','date','totalPrice', 'payed'];
+  displayedColumnsClosedInvoices: string[] = ['clientName','projectName','date','totalPrice'];
 
 
   constructor(
