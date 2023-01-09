@@ -3,6 +3,7 @@ import { EmployeeService } from 'src/app/service/employee.service';
 import {Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
 import {Employee} from "../../model/employee.model";
+import {ActivityService} from "../../service/activity.service";
 
 @Component({
   selector: 'app-nav',
@@ -15,11 +16,15 @@ export class NavComponent {
     private employeeService:EmployeeService,
     private authService:AuthService,
               private router: Router,
+    private activityService:ActivityService,
               ) {
     this.user=this.authService.connectedUser;
   }
 
   userConnected():boolean{
+    if (!this.router.url.startsWith('/agenda')) {
+      this.activityService.date=new Date();
+      }
     if(this.authService.connectedUser==null ) {
 
       if (this.router.url!= '/login'){

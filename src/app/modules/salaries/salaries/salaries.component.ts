@@ -12,8 +12,8 @@ export class SalariesComponent implements OnInit{
   dataSource: ConsultantSalary[];
   displayedColumns:string[];
   month: string;
-  monthNames: string[] = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September",
-  "Oktober", "November", "December"];
+  monthNames: string[] = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september",
+  "oktober", "november", "december"];
 
   constructor(
     private consultantService: ConsultantService,
