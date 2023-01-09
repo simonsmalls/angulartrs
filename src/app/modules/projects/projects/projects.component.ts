@@ -18,12 +18,9 @@ import {DateDTO} from "../../../model/date-dto";
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  projects: Project[];
-  dataSource = new MatTableDataSource<Project>();
-  displayedColumns: string[] = ["name", "client", "description", "hourlyRate"]; // TODO "actions"?
+  dataSource: Project[];
+  displayedColumns: string[] = ["name", "clientName", "description", "hourlyRate", "start", "end"]; // TODO "actions"?
   user:Employee;
-  date:Date;
-  datum:string;
 
   constructor(
     private authService:AuthService,
@@ -34,6 +31,7 @@ export class ProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /*
     this.user = this.authService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
     this.date = new Date();   // TODAY
@@ -43,6 +41,7 @@ export class ProjectsComponent implements OnInit {
       }
     )
 
+     */
   }
 
   connected():boolean {
