@@ -20,18 +20,15 @@ import {DateDTO} from "../../../model/date-dto";
 export class ProjectsComponent implements OnInit {
   projects: Project[];
   dataSource = new MatTableDataSource<Project>();
-  displayedColumns: string[] = ["name", "client", "description", "hourlyRate", "actions"]; // TODO "actions"?
-  entityForm: FormGroup;
+  displayedColumns: string[] = ["name", "client", "description", "hourlyRate"]; // TODO "actions"?
   user:Employee;
   date:Date;
-  dateDTO:DateDTO=new DateDTO();
   datum:string;
 
   constructor(
     private authService:AuthService,
     private projectService:ProjectService,
     private router:Router,
-    private fb:FormBuilder,
     public dialog: MatDialog,
 
   ) {}
@@ -40,16 +37,11 @@ export class ProjectsComponent implements OnInit {
     this.user = this.authService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
     this.date = new Date();   // TODAY
-    this.dateDTO.year = this.date.getFullYear()
-    this.dateDTO.month = this.date.getMonth() + 1;
-    this.dateDTO.day= this.date.getDate();
-    this.datum = this.dateDTO.day+'/'+this.dateDTO.month+'/'+this.dateDTO.year;
     this.projectService.getAllOngoing().subscribe( (c) => {
         this.projects = c;
         this.dataSource.data = c;
       }
     )
- //   this.entityForm = this.fb.group( {this.date} );
 
   }
 
@@ -61,20 +53,5 @@ export class ProjectsComponent implements OnInit {
     this.router.navigate(['/projects/add'])
   }
 
-
-
-
-
-
-  /*dataSource: Project[];
-  displayedColumns: string[];
-
-  constructor(private projectService : ProjectService) {
-  }
-
-  ngOnInit(): void {    // TODO "actions"???, clientId -> ClientName, addProject
-    this.displayedColumns = ["name", "client", "description", "hourlyRate", "actions"]; // TODO "actions"?
-    this.projectService.getAllOngoing().subscribe((projects) => { this.dataSource = projects;} )
-  }*/
 
 }
