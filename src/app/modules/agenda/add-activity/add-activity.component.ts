@@ -105,8 +105,6 @@ export class AddActivityComponent {
    return  (!(this.entityForm.controls['endtime'].valid && this.entityForm.controls['starttime'].valid && this.entityForm.controls['project'].valid
     && this.entityForm.controls['date'].valid && this.entityForm.controls['category'].valid))
 
-
-
   }
 
 
