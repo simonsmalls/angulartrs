@@ -1,4 +1,3 @@
-import {Time} from "@angular/common";
 
 export class WorkingTime {
   id: number;
@@ -6,6 +5,4 @@ export class WorkingTime {
   startTime: string;
   endTime: string;
   timeWorkedMin: number;
-  consultantId: number;
-  consultantName: string;
 }
