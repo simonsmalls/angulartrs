@@ -1,5 +1,5 @@
 nav {
-  background-color: darkgrey;
+  background-color: #049ACC;/* #049ACC is blauw  #7dba00  (green)  and darkgrey was oorspronkelijk*/
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 2px;
@@ -26,6 +26,7 @@ a {
   color: black;
   font-size: 20px;
   text-decoration: none;
+  font-family: 'Noto Sans';
 
 
 }
@@ -50,4 +51,8 @@ a:hover {
 .right-nav {
   margin-right: auto;
   text-decoration: gray;
+}
+
+.active{
+  font-size: 36px;
 }

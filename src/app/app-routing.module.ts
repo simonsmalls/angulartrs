@@ -9,6 +9,7 @@ const routes: Routes = [
   {path:'agenda', loadChildren:()=> import('./modules/agenda/agenda.module').then((m)=>m.AgendaModule)},
   {path:'time-registration', loadChildren:()=> import('./modules/time-registration/time-registration.module').then((m)=>m.TimeRegistrationModule)},
   {path:'salaries', loadChildren:()=> import('./modules/salaries/salaries.module').then((m)=>m.SalariesModule)},
+  {path:'analyze', loadChildren:()=> import('./modules/analyze/analyze.module').then((m)=>m.AnalyzeModule)},
   {path:'', redirectTo:"/login", pathMatch:'full'}
 ];
 

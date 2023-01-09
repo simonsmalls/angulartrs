@@ -1,6 +1,6 @@
 <div>
-  <button mat-raised-button (click)="startDay()">Begin werkdag</button>
-  <button mat-raised-button (click)="endDay()">Stop werkdag</button>
+  <button mat-raised-button (click)="startDay()" [disabled]="hasOpenWorkTime">Begin werktijd</button>
+  <button mat-raised-button (click)="endDay()" [disabled]="!hasOpenWorkTime">Stop werktijd</button>
 </div>
 
 <div>

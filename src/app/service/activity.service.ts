@@ -13,9 +13,14 @@ import { DateDTO } from '../model/date-dto';
 export class ActivityService {
 
   url:string='http://localhost:8888/api/activity/';
+  date:Date
+
+  constructor(protected httpClient: HttpClient) {
 
 
-  constructor(protected httpClient: HttpClient) { }
+    this.date=new Date();
+
+  }
 
 
 

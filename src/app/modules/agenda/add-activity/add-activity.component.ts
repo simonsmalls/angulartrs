@@ -26,7 +26,7 @@ export class AddActivityComponent {
   entityForm: FormGroup;
   datum:string;
   user=this.authService.connectedUser;
-  projects:Project[];
+  projects:Project[]=[];
   categories:Category[];
   @Input() activity:Activity;
   toevoegen:string;
@@ -48,7 +48,7 @@ export class AddActivityComponent {
   }
 
   ngOnInit(): void {
-    this._locale='fr';
+    this._locale='nl';
     this._adapter.setLocale(this._locale);
 
 
@@ -71,24 +71,46 @@ export class AddActivityComponent {
 
     this.projectService.getAllOngoing().subscribe((c)=>{
       this.projects=c;
+      let project = new Project();
+      project.id=0;
+      project.name='intern';
+      this.projects.push(project);
+
+
 
     })
+    this.entityForm.controls['date'].setValue(this.activityService.date)
     if (this.activity){
       this.entityForm.controls['endtime'].setValue(this.activity.endTime);
       this.entityForm.controls['starttime'].setValue(this.activity.startTime)
       this.entityForm.controls['project'].setValue(this.activity.projectId)
-      this.entityForm.controls['date'].setValue(this.activity.startDate)
+
       this.entityForm.controls['description'].setValue(this.activity.description)
       this.entityForm.controls['category'].setValue(this.activity.categoryName);
       this.toevoegen='bewerken'
+    }else{
+      this.entityForm.controls['starttime'].setValue('08:00');
+      this.entityForm.controls['endtime'].setValue('09:00')
     }
 
   }
 
   datePick(){
-    let date=this.entityForm.controls['date'].value;
-    console.log('date is picked')
+    console.log('endtime '+ this.entityForm.controls['endtime'].valid)
+    console.log('description '+ this.entityForm.controls['description'].valid)
+    console.log('project '+ this.entityForm.controls['project'].valid)
+
+
   }
+  checkForm():boolean{
+   return  (!(this.entityForm.controls['endtime'].valid && this.entityForm.controls['starttime'].valid && this.entityForm.controls['project'].valid
+    && this.entityForm.controls['date'].valid && this.entityForm.controls['category'].valid))
+
+
+
+  }
+
+
 
   add() {
     if (this.activity==null) {
@@ -106,9 +128,9 @@ export class AddActivityComponent {
       activity.description = this.entityForm.controls['description'].value;
 
       activity.startDate.setHours(1,1,1);
+      this.activityService.date=activity.startDate;
       this.activityService.addActivity(activity).subscribe((c) => {
-        console.log("activity send");
-        console.log(activity)
+
         this.router.navigate(['/agenda/check'])
       });
 
@@ -122,10 +144,12 @@ export class AddActivityComponent {
       this.activity.projectId = this.entityForm.controls['project'].value;
       this.activity.startDate = this.entityForm.controls['date'].value;
       this.activity.description = this.entityForm.controls['description'].value;
-
-    this.activity.startDate.setHours(1,1,1);
+    if(! (typeof(this.activity.startDate)== "string")){
+        this.activity.startDate.setHours(1,1,1);
+        this.activityService.date=this.activity.startDate;
+    }
       this.activityService.editActivity(this.activity).subscribe((c) => {
-        console.log("activity send")
+
         this.router.navigate(['/agenda/check'])
       });
 
@@ -135,5 +159,7 @@ export class AddActivityComponent {
   back(){
     this.router.navigate(['agenda/check'])
   }
+
+
 
 }
