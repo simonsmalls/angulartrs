@@ -34,7 +34,7 @@ export class TimerComponent implements OnInit{
   ngOnInit(): void {
     this.user = this.authService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
-    console.log(this.user);
+
 
     this.loadWorkingTimes();
 

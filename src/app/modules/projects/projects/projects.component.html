@@ -1,0 +1,46 @@
+<!--<p>Lijst van projecten</p>-->
+<p *ngIf="!connected()" >u moet zich eerst inloggen </p>
+
+<div *ngIf="connected()">
+
+
+  <button mat-button (click)="add()">Project toevoegen</button>
+  <p></p>
+
+<!--
+
+  <div>datum:{{datum}} </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="name">
+  <th mat-header-cell *matHeaderCellDef>Project</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="client">
+      <th mat-header-cell *matHeaderCellDef>Klant</th>
+      <td mat-cell *matCellDef="let element">{{element.clientName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Omschrijving</th>
+      <td mat-cell *matCellDef="let element">{{element.description}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hourlyRate">
+      <th mat-header-cell *matHeaderCellDef>Prijs per uur</th>
+      <td mat-cell *matCellDef="let element">{{element.hourlyRate | currency :'EUR':'symbol':'1.2-2':'nl-BE'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acties</th>
+      <td mat-cell *matCellDef="let element">{{element.actions}}</td>
+    </ng-container>
+
+  </table>
+-->
+
+</div>
+
+
+

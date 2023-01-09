@@ -149,7 +149,7 @@ export class AnalyzeComponent {
       this.analysis=c;
       this.dataSource.data=c;
       this.tableready=true;
-        console.log(c)
+
     }
     )
   }
