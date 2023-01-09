@@ -1,44 +1,55 @@
 
 
 <div class="container"  [formGroup]="entityForm">
-<mat-form-field appearance="fill" >
+
+  <div>
+<mat-form-field class="form" appearance="fill" >
   <mat-label>kies een dag</mat-label>
   <input (dateChange)="datePick()" matInput [matDatepicker]="dp" formControlName="date" >
   <mat-hint>DD/MM/YYYY</mat-hint>
   <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
   <mat-datepicker #dp></mat-datepicker>
 </mat-form-field>
-
-
-<div class="ngx-timepicker-field-example">
-  <ngx-timepicker-field formControlName="starttime" [format]="24" [defaultTime]="'8:00'"></ngx-timepicker-field>
-  <ngx-timepicker-field formControlName="endtime" [format]="24" [defaultTime]="'8:00'"></ngx-timepicker-field>
 </div>
 
-  <mat-form-field appearance="fill"  >
+<div class="time">
+  <div >
+
+  <ngx-timepicker-field formControlName="starttime" [format]="24" [defaultTime]="'8:00'"></ngx-timepicker-field>
+  </div>
+
+  <div >
+  <ngx-timepicker-field formControlName="endtime" [format]="24" [defaultTime]="'8:00'"></ngx-timepicker-field>
+  </div>
+</div>
+
+  <div>
+  <mat-form-field class="form" appearance="fill"  >
     <mat-label> project</mat-label>
     <mat-select    [formControl]="$any(entityForm.controls['project'])"   >
       <mat-option *ngFor="let project of projects" [value]="project.id"  >{{project.name}}</mat-option>
 
     </mat-select>
   </mat-form-field>
+    </div>
 
-  <mat-form-field appearance="fill" >
+<div>
+    <mat-form-field class="form" appearance="fill" >
     <mat-label> category</mat-label>
     <mat-select    [formControl]="$any(entityForm.controls['category'])"  >
       <mat-option *ngFor="let category of categories" [value]="category.name"  >{{category.name}}</mat-option>
 
     </mat-select>
   </mat-form-field>
-
+</div>
 <div>
-  <mat-form-field appearance="fill">
+  <mat-form-field class="form" appearance="fill">
     <mat-label>beschrijving</mat-label>
     <textarea formControlName="description" matInput></textarea>
   </mat-form-field>
 </div>
-  <mat-button-toggle (click)="back()" >terug</mat-button-toggle>
-  <mat-button-toggle (click)="add()" >activiteit {{toevoegen}}</mat-button-toggle>
+  <button mat-raised-button (click)="back()" >terug</button>
+  <button mat-raised-button  [disabled]="checkForm()" (click)="add() " >activiteit {{toevoegen}}</button>
 </div>
 
 

@@ -1,0 +1,15 @@
+div {
+  margin-bottom: 10px;
+}
+.time{
+
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+
+}
+.form{
+  width:350px;
+}

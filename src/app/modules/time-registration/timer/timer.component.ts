@@ -39,7 +39,7 @@ export class TimerComponent implements OnInit{
     this.loadWorkingTimes();
 
     // make table
-    this.displayedColumns = ['start time', 'end time', 'time worked'];
+    this.displayedColumns = ['start', 'end', 'timeWorked', 'delete'];
 
   }
 
@@ -84,8 +84,10 @@ export class TimerComponent implements OnInit{
     if (end.getHours()-start.getHours() == 0 && end.getMinutes()-start.getMinutes()==0){
       // delete instead of adding OR just throw error and add deleteButton
       // throw Error("U kunt niet minder dan een minuut werken");
-      this.snackBar.open("U kunt niet minder dan een minuut werken", 'X', {panelClass: ['error']});
-      return;
+      this.snackBar.open("U kunt niet minder dan een minuut werken", 'X', {panelClass: ['error'],
+        duration:10000,verticalPosition:"top"});
+
+    return;
     }
 
     /* PRODUCTION
@@ -103,4 +105,10 @@ export class TimerComponent implements OnInit{
     );
   }
 
+  delete(workingTime: WorkingTime){
+    this.consultantService.deleteWorkingTime(workingTime)
+      .subscribe(() => {
+        this.loadWorkingTimes();
+      });
+  }
 }

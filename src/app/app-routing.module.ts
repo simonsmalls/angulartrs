@@ -8,6 +8,7 @@ const routes: Routes = [
   {path:'time-registration', loadChildren:()=> import('./modules/time-registration/time-registration.module').then((m)=>m.TimeRegistrationModule)},
   {path:'salaries', loadChildren:()=> import('./modules/salaries/salaries.module').then((m)=>m.SalariesModule)},
   {path:'projects', loadChildren:()=> import('./modules/projects/projects.module').then((m)=>m.ProjectsModule)},
+  {path:'analyze', loadChildren:()=> import('./modules/analyze/analyze.module').then((m)=>m.AnalyzeModule)},
   {path:'', redirectTo:"/login", pathMatch:'full'}
 ];
 

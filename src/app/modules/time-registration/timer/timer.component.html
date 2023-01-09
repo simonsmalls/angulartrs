@@ -1,4 +1,4 @@
-<div>
+<div class="buttons">
   <button mat-raised-button (click)="startDay()" [disabled]="hasOpenWorkTime">Begin werktijd</button>
   <button mat-raised-button (click)="endDay()" [disabled]="!hasOpenWorkTime">Stop werktijd</button>
 </div>
@@ -6,20 +6,25 @@
 <div>
   <!-- Timer with existing times today -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="start time">
+    <ng-container matColumnDef="start">
       <th mat-header-cell *matHeaderCellDef>Begin</th>
-      <td mat-cell *matCellDef="let element">{{element.startTime}}</td>
+      <td mat-cell *matCellDef="let element">{{element.startTime | truncateMinutes }}</td>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="end time">
+    <ng-container matColumnDef="end">
       <th mat-header-cell *matHeaderCellDef>Einde</th>
-      <td mat-cell *matCellDef="let element" > {{element.endTime}}</td>
+      <td mat-cell *matCellDef="let element" > {{element.endTime | truncateMinutes }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="time worked">
+    <ng-container matColumnDef="timeWorked">
       <th mat-header-cell *matHeaderCellDef>Gewerkte tijd</th>
       <td mat-cell *matCellDef="let element" >{{element.timeWorkedMin | minsToHrMins}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Acties</th>
+      <td mat-cell *matCellDef="let element"><button mat-raised-button color="warn" (click)="delete(element)" >verwijder</button></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

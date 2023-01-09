@@ -1,21 +1,29 @@
 <nav>
   <div>
     <ul >
+      <!--
+      <li>
+        <img src="abislogo.svg" alt="logo">
+      </li>
+      -->
       <li>
         <span>TRS</span>
       </li>
     </ul>
   </div>
   <div>
-  <ul *ngIf="!userConnected()">
+  <ul *ngIf="userConnected()">
     <li>
-      <a class="middle-nav" routerLink="/agenda/check">Agenda</a>
+      <a class="middle-nav" routerLink="/agenda/check" [routerLinkActive]="['active']">Agenda</a>
     </li>
     <li *ngIf="isConsultant()">
-      <a class="middle-nav" routerLink="/time-registration">Tijdsregistratie</a>
+      <a class="middle-nav" routerLink="/time-registration" [routerLinkActive]="['active']">Tijdsregistratie</a>
     </li>
     <li *ngIf="isAccountant()">
-      <a routerLink="/salaries">Salarissen</a>
+      <a class="middle-nav"  routerLink="/salaries" [routerLinkActive]="['active']">Salarissen</a>
+    </li>
+    <li *ngIf="isManager()">
+      <a class="middle-nav"  routerLink="/analyze" [routerLinkActive]="['active']">Statistieken</a>
     </li>
     <li *ngIf="isManager()">
       <a routerLink="/projects">Projecten</a>
@@ -25,7 +33,11 @@
   </div>
 
   <div>
-  <ul *ngIf="!userConnected()" class="right-nav">
+  <ul *ngIf="userConnected()" class="right-nav">
+    <li>
+      <span>{{user.firstName | titlecase }} {{user.lastName | titlecase}}</span>
+    </li>
+
     <li>
       <a (click)="disconnect()">Logout</a>
     </li>

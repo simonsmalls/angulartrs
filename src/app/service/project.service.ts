@@ -15,6 +15,10 @@ export class ProjectService {
   constructor(protected httpClient: HttpClient) { }
 
   getAllOngoing(): Observable<Project[]> {
+    return this.httpClient.get<Project[]>(this.url+ 'ongoing');
+  }
+
+  getAll(){
     return this.httpClient.get<Project[]>(this.url);
   }
 
