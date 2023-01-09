@@ -23,10 +23,14 @@ export class ProjectsComponent implements OnInit{
   filteredProjects: Array<Project>;
   entityForm: FormGroup;
   user:Employee;
-  invoices: Array<Invoice>;
-  ongoingInvoices: Array<Invoice>;
-  historyInvoices: Array<Invoice>;
+  invoices = new MatTableDataSource<Invoice>();
+  ongoingInvoices = new MatTableDataSource<Invoice>();
+  historyInvoices = new MatTableDataSource<Invoice>();
   projectId: number;
+  displayedColumns: string[] = ['projectName','clientName','description','showInvoices'];
+  displayedColumnsOngoingInvoices: string[] = ['clientName','projectName','date','totalPrice', 'finalise'];
+  displayedColumnsClosedInvoices: string[] = ['clientName','projectName','date','totalPrice', 'payed'];
+
 
   constructor(
     private projectService: ProjectService,
@@ -91,8 +95,8 @@ export class ProjectsComponent implements OnInit{
   showInvoices(projectId: number) {
 
     this.invoiceService.getAllInvoicesOfId(projectId).subscribe(i =>{
-      this.ongoingInvoices = i.filter(invoice => invoice.closed === false);
-      this.historyInvoices = i.filter(invoice => invoice.closed === true);
+      this.ongoingInvoices.data = i.filter(invoice => invoice.closed === false);
+      this.historyInvoices.data = i.filter(invoice => invoice.closed === true);
     })
 
   }
@@ -102,7 +106,8 @@ export class ProjectsComponent implements OnInit{
     this.invoiceService.finaliseInvoice(invoiceId).subscribe(i=> {
       console.log("invoice closed")
     })
-    this.showInvoices(this.projectId);
+    this.historyInvoices._updateChangeSubscription();
+
   }
 
   checkMonthly(){

@@ -18,16 +18,12 @@
       <a routerLink="/salaries">Salarissen</a>
     </li>
   </ul>
-  </div>
-
-  <div>
     <ul *ngIf="!userConnected()">
       <li>
         <a routerLink="/invoices">Facturatie</a>
       </li>
     </ul>
   </div>
-
   <div>
   <ul *ngIf="!userConnected()" class="right-nav">
     <li>

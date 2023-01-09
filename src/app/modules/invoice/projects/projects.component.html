@@ -7,7 +7,6 @@
       <input matStartDate formControlName="startDate" placeholder="Startdatum">
       <input matEndDate formControlName="endDate" placeholder="Einddatum">
     </mat-date-range-input>
-    <mat-hint>MM/DD/YYYY ? MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker #picker></mat-date-range-picker>
     <br>
@@ -15,70 +14,95 @@
 
   <mat-button-toggle (click)="submit()" >Kiezen</mat-button-toggle>
 
-  <table>
-    <caption>Projecten</caption>
-    <thead>
-      <th>Naam</th>
-      <th>Cliënt</th>
-      <th>Beschrijving</th>
-      <th>Facturatie</th>
-    </thead>
+  <table mat-table [dataSource]="filteredProjects">
+    <ng-container matColumnDef="projectName">
+      <th mat-header-cell *matHeaderCellDef> Naam  </th>
+      <td mat-cell *matCellDef="let project"> {{project.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef=clientName>
+      <th mat-header-cell *matHeaderCellDef> Cliënt </th>
+      <td mat-cell *matCellDef="let project"> {{project.clientName}} </td>
+    </ng-container>
+    <ng-container matColumnDef=description>
+      <th mat-header-cell *matHeaderCellDef> Beschrijving </th>
+      <td mat-cell *matCellDef="let project"> {{project.description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="showInvoices">
+      <th mat-header-cell *matHeaderCellDef> Facturatie </th>
+      <td mat-cell *matCellDef="let project" ><mat-button-toggle (click)="showInvoices(project.id)" >Laat facturen zien</mat-button-toggle></td>
+    </ng-container>
 
-    <tbody>
-      <tr *ngFor="let project of filteredProjects">
-        <td>{{project.name}}</td>
-        <td>{{project.clientName}}</td>
-        <td>{{project.description}}</td>
-        <td><button class="btn btn-primary" type="submit" (click)="showInvoices(project.id)">Laat facturen zien</button></td>
-      </tr>
-    </tbody>
+    <caption mat-caption> Projecten</caption>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
   <br>
 
-  <table *ngIf="ongoingInvoices">
-    <caption>Openstaande facturen</caption>
-    <thead>
-    <th>Cliënt</th>
-    <th>ProjectNaam</th>
-    <th>Datum</th>
-    <th>Totale Prijs</th>
-    <th>Afronden</th>
-    </thead>
+  <div *ngIf="ongoingInvoices" >
+  <table mat-table [dataSource]="ongoingInvoices">
+    <ng-container matColumnDef=clientName>
+      <th mat-header-cell *matHeaderCellDef> Cliënt </th>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.clientName}} </td>
+    </ng-container>
+    <ng-container matColumnDef=projectName>
+      <th mat-header-cell *matHeaderCellDef> Project</th>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.projectName}} </td>
+    </ng-container>
+    <ng-container matColumnDef=date>
+      <th mat-header-cell *matHeaderCellDef> Datum</th>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.date}} </td>
+    </ng-container>
+    <ng-container matColumnDef=totalPrice>
+      <th mat-header-cell *matHeaderCellDef> Totale prijs</th>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.totalPrice}} </td>
+    </ng-container>
+    <ng-container matColumnDef="finalise">
+      <th mat-header-cell *matHeaderCellDef> Afsluiten </th>
+      <td mat-cell *matCellDef="let invoice" ><mat-button-toggle (click)="finalise(invoice.id)" >Factuur afsluiten</mat-button-toggle></td>
+    </ng-container>
 
-    <tbody>
-    <tr *ngFor="let invoice of ongoingInvoices">
-      <td>{{invoice.clientName}}</td>
-      <td>{{invoice.projectName}}</td>
-      <td>{{invoice.date}}</td>
-      <td>{{invoice.totalPrice}}</td>
-      <td><button class="btn btn-primary" type="submit" (click)="finalise(invoice.id)">Factuur afronden</button></td>
-    </tr>
-    </tbody>
+    <caption mat-caption>Lopende projecten</caption>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsOngoingInvoices"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsOngoingInvoices;"></tr>
   </table>
-
+  </div>
 
   <br>
-  <table *ngIf="historyInvoices">
-    <caption>Factureringsgeschiedenis</caption>
-    <thead>
-    <th>Cliënt</th>
-    <th>Projectnaam</th>
-    <th>Datum</th>
-    <th>Totale prijs</th>
-    <th>Betaald</th>
-    </thead>
 
-    <tbody>
-    <tr *ngFor="let invoice of historyInvoices">
-      <td>{{invoice.clientName}}</td>
-      <td>{{invoice.projectName}}</td>
-      <td>{{invoice.date}}</td>
-      <td>{{invoice.totalPrice}}</td>
-      <td>Betaald</td>
-    </tr>
-    </tbody>
+  <div *ngIf="historyInvoices">
+  <table  mat-table [dataSource]="historyInvoices">
+
+    <ng-container matColumnDef=clientName>
+      <th mat-header-cell *matHeaderCellDef> Cliënt </th>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.clientName}} </td>
+    </ng-container>
+    <ng-container matColumnDef=projectName>
+      <th mat-header-cell *matHeaderCellDef> Project</th>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.projectName}} </td>
+    </ng-container>
+    <ng-container matColumnDef=date>
+      <th mat-header-cell *matHeaderCellDef> Datum</th>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.date}} </td>
+    </ng-container>
+    <ng-container matColumnDef=totalPrice>
+      <th mat-header-cell *matHeaderCellDef> Totale prijs</th>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.totalPrice}} </td>
+    </ng-container>
+    <ng-container matColumnDef=payed>
+      <th mat-header-cell *matHeaderCellDef> Betaald</th>
+      <td mat-cell *matCellDef="let invoice"> Betaald </td>
+    </ng-container>
+
+    <caption mat-caption> Afgesloten facturen</caption>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsClosedInvoices"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsClosedInvoices;"></tr>
   </table>
+  </div>
+
 
   </div>
 

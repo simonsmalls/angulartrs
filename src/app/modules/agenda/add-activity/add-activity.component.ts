@@ -10,13 +10,7 @@ import {Category} from "../../../model/category.model";
 import {CategoryService} from "../../../service/category.service";
 import {ProjectService} from "../../../service/project.service";
 import {AuthService} from "../../../service/auth.service";
-import {DateDTO} from "../../model/date-dto";
-import {Project} from "../../model/project.model";
-import {Category} from "../../model/category.model";
-import {CategoryService} from "../../service/category.service";
-import {ProjectService} from "../../service/project.service";
-import {OathService} from "../../service/oath.service";
-import {InvoiceService} from "../../service/invoice.service";
+
 
 
 
@@ -118,9 +112,7 @@ export class AddActivityComponent {
         this.router.navigate(['/agenda/check'])
       });
 
-      this.invoiceService.updateProjectInvoice(activity.projectId).subscribe((c) => {
-        console.log("invoice updated");
-      });
+
 
     }else{
       this.activity.categoryName = this.entityForm.controls['category'].value;
@@ -137,9 +129,6 @@ export class AddActivityComponent {
         this.router.navigate(['/agenda/check'])
       });
 
-      this.invoiceService.updateProjectInvoice(this.activity.projectId).subscribe((c) => {
-        console.log("invoice updated");
-      });
     }
   }
 
