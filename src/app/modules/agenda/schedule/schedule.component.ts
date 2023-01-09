@@ -21,7 +21,7 @@ import {AuthService} from "../../../service/auth.service";
 export class ScheduleComponent implements OnInit {
   activities:Activity[];
   dataSource = new MatTableDataSource<Activity>();
-  displayedColumns: string[] = ['project','category','start time','end time','edit','delete'];
+  displayedColumns: string[] = ['project','category','start','end','edit','delete'];
   entityForm: FormGroup;
 
   user:Employee;

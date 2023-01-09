@@ -49,7 +49,6 @@ table {
   hyphens: auto;
 }
 
-
 .mat-column-name {
   word-wrap: break-word !important;
   white-space: unset !important;
@@ -65,3 +64,18 @@ table {
   hyphens: auto;
 }
 
+
+.mat-column-hourlyRate {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}

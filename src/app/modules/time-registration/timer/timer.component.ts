@@ -39,7 +39,7 @@ export class TimerComponent implements OnInit{
     this.loadWorkingTimes();
 
     // make table
-    this.displayedColumns = ['start', 'end', 'timeWorked'];
+    this.displayedColumns = ['start', 'end', 'timeWorked', 'delete'];
 
   }
 
@@ -105,4 +105,10 @@ export class TimerComponent implements OnInit{
     );
   }
 
+  delete(workingTime: WorkingTime){
+    this.consultantService.deleteWorkingTime(workingTime)
+      .subscribe(() => {
+        this.loadWorkingTimes();
+      });
+  }
 }
