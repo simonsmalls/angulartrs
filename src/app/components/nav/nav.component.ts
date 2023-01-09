@@ -14,8 +14,8 @@ export class NavComponent {
   constructor(
     private employeeService:EmployeeService,
     private authService:AuthService,
-              private router: Router,
-              ) {
+    private router: Router,
+    ) {
     this.user=this.authService.connectedUser;
   }
 

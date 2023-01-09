@@ -52,7 +52,7 @@
     </ng-container>
     <ng-container matColumnDef=date>
       <th mat-header-cell *matHeaderCellDef> Datum</th>
-      <td mat-cell *matCellDef="let invoice"> {{invoice.date}} </td>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.date | dateToMonth}} </td>
     </ng-container>
     <ng-container matColumnDef=totalPrice>
       <th mat-header-cell *matHeaderCellDef> Totale prijs</th>
@@ -60,7 +60,7 @@
     </ng-container>
     <ng-container matColumnDef="finalise">
       <th mat-header-cell *matHeaderCellDef> Afsluiten </th>
-      <td mat-cell *matCellDef="let invoice" ><mat-button-toggle (click)="finalise(invoice.id)" >Factuur afsluiten</mat-button-toggle></td>
+      <td mat-cell *matCellDef="let invoice" ><button mat-button [disabled]="afterInvoiceDate(invoice.date)" (click)="finalise(invoice.id)" >Factuur afsluiten</button></td>
     </ng-container>
 
     <caption mat-caption>Lopende projecten</caption>
@@ -85,7 +85,7 @@
     </ng-container>
     <ng-container matColumnDef=date>
       <th mat-header-cell *matHeaderCellDef> Datum</th>
-      <td mat-cell *matCellDef="let invoice"> {{invoice.date}} </td>
+      <td mat-cell *matCellDef="let invoice"> {{invoice.date | dateToMonth}} </td>
     </ng-container>
     <ng-container matColumnDef=totalPrice>
       <th mat-header-cell *matHeaderCellDef> Totale prijs</th>

@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { PercentMinePipe } from './pipes/percent-mine.pipe';
 import { TimeStringPipe } from './pipes/time-string.pipe';
+import { DateToMonthPipe } from './pipes/date-to-month.pipe';
 
 
 
@@ -14,6 +15,7 @@ import { TimeStringPipe } from './pipes/time-string.pipe';
     MinsToHrMinsPipe,
     PercentMinePipe,
     TimeStringPipe,
+    DateToMonthPipe,
 
   ],
   imports: [
@@ -31,6 +33,7 @@ import { TimeStringPipe } from './pipes/time-string.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DateToMonthPipe,
   ]
 })
 export class SharedModuleModule { }

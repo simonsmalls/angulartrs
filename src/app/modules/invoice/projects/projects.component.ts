@@ -46,9 +46,10 @@ export class ProjectsComponent implements OnInit{
     this.user=this.authService.connectedUser;
     if (this.user == null) this.router.navigate(["/login"]);
 
-    this.projectService.getAllOngoing().subscribe(p => {
+    this.projectService.getAll().subscribe(p => {
       this.projects = p;
       this.filteredProjects = this.projects;
+      console.log(this.filteredProjects.length + "nr of projects found")
 
       for (const project of this.projects) {
         try {
@@ -98,7 +99,17 @@ export class ProjectsComponent implements OnInit{
       this.ongoingInvoices.data = i.filter(invoice => invoice.closed === false);
       this.historyInvoices.data = i.filter(invoice => invoice.closed === true);
     })
+    console.log(this.ongoingInvoices.data.length + " nr of of ongoing invoices");
+    console.log(this.historyInvoices.data.length  + " nr of history invoices")
 
+  }
+  afterInvoiceDate(date):boolean{
+    let datenow =new Date();
+    let invoiceDate = new Date(date)
+    console.log(invoiceDate)
+    if (datenow.getTime() > invoiceDate.getTime()) return false
+
+    return true
   }
 
   finalise(invoiceId: number) {
@@ -106,7 +117,6 @@ export class ProjectsComponent implements OnInit{
     this.invoiceService.finaliseInvoice(invoiceId).subscribe(i=> {
       console.log("invoice closed")
     })
-    this.historyInvoices._updateChangeSubscription();
 
   }
 
