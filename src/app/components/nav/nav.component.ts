@@ -52,7 +52,7 @@ export class NavComponent {
   disconnect(){
     this.authService.logout();
     this.router.navigate(["/login"]);
-    console.log("user gets disconnected");
+
   }
 
 }

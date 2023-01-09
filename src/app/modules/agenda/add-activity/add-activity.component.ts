@@ -95,9 +95,7 @@ export class AddActivityComponent {
   }
 
   datePick(){
-    console.log('endtime '+ this.entityForm.controls['endtime'].valid)
-    console.log('description '+ this.entityForm.controls['description'].valid)
-    console.log('project '+ this.entityForm.controls['project'].valid)
+
 
 
   }

@@ -25,7 +25,7 @@ export class ActivityService {
 
 
   addActivity( activity:Activity) {
-    console.log(activity)
+
     return this.httpClient.post<void>(this.url+ 'add',activity);
   }
 

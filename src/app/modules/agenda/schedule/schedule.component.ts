@@ -55,7 +55,6 @@ export class ScheduleComponent implements OnInit {
         this.activities=c;
 
         this.dataSource.data=c;
-        console.log("went here")
       })
     this.entityForm=this.fb.group({
       date: [null],
