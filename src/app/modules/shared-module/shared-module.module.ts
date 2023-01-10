@@ -5,6 +5,7 @@ import {MaterialModule} from "./material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { PercentMinePipe } from './pipes/percent-mine.pipe';
+import { DateToMonthPipe } from './pipes/date-to-month.pipe';
 import { TruncateMinutesPipe } from './pipes/truncate-minutes.pipe';
 
 
@@ -13,6 +14,7 @@ import { TruncateMinutesPipe } from './pipes/truncate-minutes.pipe';
   declarations: [
     MinsToHrMinsPipe,
     PercentMinePipe,
+    DateToMonthPipe,
     TruncateMinutesPipe,
   ],
   imports: [
@@ -30,6 +32,7 @@ import { TruncateMinutesPipe } from './pipes/truncate-minutes.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DateToMonthPipe,
   ]
 })
 export class SharedModuleModule { }

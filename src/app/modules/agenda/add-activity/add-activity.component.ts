@@ -13,6 +13,7 @@ import {AuthService} from "../../../service/auth.service";
 
 
 
+
 @Component({
   selector: 'app-add-activity',
   templateUrl: './add-activity.component.html',
@@ -128,6 +129,9 @@ export class AddActivityComponent {
 
         this.router.navigate(['/agenda/check'])
       });
+
+
+
     }else{
       this.activity.categoryName = this.entityForm.controls['category'].value;
 
@@ -144,6 +148,7 @@ export class AddActivityComponent {
 
         this.router.navigate(['/agenda/check'])
       });
+
     }
   }
 
