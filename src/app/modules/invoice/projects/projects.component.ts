@@ -49,7 +49,19 @@ export class ProjectsComponent implements OnInit{
 
     this.projectService.getAll().subscribe(p => {
       this.projects = p;
-      this.filteredProjects = this.projects;
+      this.filteredProjects = this.projects.filter(project => {
+        let startDate = new Date();
+        let endDate = new Date();
+        let backendStartDate = new Date(project.start);
+        let backendEndDate = new Date(project.end);
+
+        return ((startDate < backendStartDate && (endDate => backendStartDate && endDate <= backendEndDate)) ||
+          ((startDate >= backendStartDate && startDate <= backendEndDate) && (endDate >= backendEndDate)) ||
+          (startDate >= backendStartDate && endDate <= backendEndDate) || (startDate <= backendStartDate && endDate >= backendEndDate))
+
+      })
+
+
 
       for (const project of this.projects) {
         try {
@@ -108,7 +120,10 @@ export class ProjectsComponent implements OnInit{
         let backendStartDate = new Date(project.start);
         let backendEndDate = new Date(project.end);
 
-        return (backendStartDate.getTime() >= startDate.getTime() && backendEndDate.getTime() <= endDate.getTime());
+        return ((startDate < backendStartDate && (endDate => backendStartDate && endDate <= backendEndDate)) ||
+          ((startDate >= backendStartDate && startDate <= backendEndDate) && (endDate >= backendEndDate)) ||
+          (startDate >= backendStartDate && endDate <= backendEndDate) || (startDate <= backendStartDate && endDate >= backendEndDate)
+        );
       })
 
     }
