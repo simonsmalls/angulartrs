@@ -18,10 +18,7 @@
   <button mat-raised-button (click)="add()">Project toevoegen</button>
 
 </div>
-
-
-
-  <div *ngIf="filteredOngoingProjects">
+  <div *ngIf="filteredOngoingProjects" id="ongoing">
     <table mat-table [dataSource]="filteredOngoingProjects" class="mat-elevation-z8">
       <ng-container matColumnDef="projectName">
         <th mat-header-cell *matHeaderCellDef>Project</th>
@@ -51,7 +48,7 @@
 
 
   <div *ngIf="filteredAllProjects">
-    <table mat-table [dataSource]="filteredAllProjects">
+    <table mat-table [dataSource]="filteredAllProjects" id="filteredAll">
       <ng-container matColumnDef="projectName">
         <th mat-header-cell *matHeaderCellDef>Project</th>
         <td mat-cell *matCellDef="let element">{{element.name}}</td>

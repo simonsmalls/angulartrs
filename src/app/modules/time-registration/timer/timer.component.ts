@@ -61,7 +61,7 @@ export class TimerComponent implements OnInit{
   }
 
   startDay(){
-    if (this.user == null) return; //make alert / snackbar
+    if (this.user == null) return;
 
     this.consultantService.startClock(this.user.id).subscribe(
       (workingTime) => {
@@ -73,19 +73,13 @@ export class TimerComponent implements OnInit{
   }
 
   endDay(){
-    if (this.user == null) return; //make alert / snackbar
-
-    if (this.openWorkTime == null){
-      // throw error
-    }
+    if (this.user == null) return;
 
     let start:Date = new Date();
     start.setHours(Number(this.openWorkTime.startTime.substring(0, 2)), Number(this.openWorkTime.startTime.substring(3,5)) );
     let end = new Date();
 
     if (end.getHours()-start.getHours() == 0 && end.getMinutes()-start.getMinutes()==0){
-      // delete instead of adding OR just throw error and add deleteButton
-      // throw Error("U kunt niet minder dan een minuut werken");
       this.snackBar.open("U kunt niet minder dan een minuut werken", 'X', {panelClass: ['error'],
         duration:10000,verticalPosition:"top"});
 
@@ -93,8 +87,8 @@ export class TimerComponent implements OnInit{
     }
 
     /* PRODUCTION
-    if (end.getHours()-start.getHours() == 0){
-      this.snackBar.open("U kunt niet minder dan een minuut werken", 'X', {panelClass: ['error']});
+    if (end.getHours()-start.getHours()  < 1){
+      this.snackBar.open("U kunt niet minder dan een uur werken", 'X', {panelClass: ['error']});
       return;
     }
     */
@@ -119,10 +113,7 @@ export class TimerComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
      this.loadWorkingTimes();
-
-
     });
   }
 }
