@@ -65,22 +65,23 @@ export class ProjectsComponent implements OnInit {
 
     this.projectService.getAll().subscribe((p) => {
       this.allProjects = p;
+      if (startDate == null || endDate == null) {
+        this.filteredAllProjects = null;
+        this.filteredOngoingProjects = this.ongoingProjects;
+      } else {
+        this.filteredOngoingProjects = null;
+        this.filteredAllProjects = this.allProjects.filter(project => {
+          let backendStartDate = new Date(project.start);
+          let backendEndDate = new Date(project.end);
+          return ((startDate < backendStartDate && (endDate => backendStartDate && endDate <= backendEndDate)) ||
+            ((startDate >= backendStartDate && startDate <= backendEndDate) && (endDate >= backendEndDate)) ||
+            (startDate >= backendStartDate && endDate <= backendEndDate) || (startDate <= backendStartDate && endDate >= backendEndDate)
+          );
+        })
+      }
     })
 
-    if (startDate == null || endDate == null) {
-      this.filteredAllProjects = null;
-      this.filteredOngoingProjects = this.ongoingProjects;
-    } else {
-      this.filteredOngoingProjects = null;
-      this.filteredAllProjects = this.allProjects.filter(project => {
-        let backendStartDate = new Date(project.start);
-        let backendEndDate = new Date(project.end);
-        return ((startDate < backendStartDate && (endDate => backendStartDate && endDate <= backendEndDate)) ||
-          ((startDate >= backendStartDate && startDate <= backendEndDate) && (endDate >= backendEndDate)) ||
-          (startDate >= backendStartDate && endDate <= backendEndDate) || (startDate <= backendStartDate && endDate >= backendEndDate)
-        );
-      })
-    }
+
   }
 }
 
