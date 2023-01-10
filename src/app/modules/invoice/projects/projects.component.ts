@@ -21,6 +21,7 @@ export class ProjectsComponent implements OnInit{
 
   projects: Array<Project>;
   filteredProjects: Array<Project>;
+
   entityForm: FormGroup;
   user:Employee;
   invoices = new MatTableDataSource<Invoice>();
@@ -76,12 +77,23 @@ export class ProjectsComponent implements OnInit{
     return true;
   }
   historyInvoicesCheck(){
+    if(this.historyInvoices==null) return false
+
     return (this.historyInvoices.data.length>0)
 
 
   }
   ongoingInvoicesCheck(){
+    if(this.ongoingInvoices==null) return false
     return (this.ongoingInvoices.data.length>0)
+
+
+  }
+
+  filteredProjectsCheck(){
+    console.log(this.filteredProjects)
+    if(this.filteredProjects==undefined) return false
+    return (!(this.filteredProjects.length==0))
 
 
   }
@@ -89,6 +101,9 @@ export class ProjectsComponent implements OnInit{
   submit() {
     let startDate :Date= this.entityForm.value.startDate;
     let endDate:Date= this.entityForm.value.endDate;
+
+    console.log(startDate)
+    console.log(endDate)
     this.ongoingInvoices = null;
     this.historyInvoices = null;
     if (startDate == null || endDate == null) {
@@ -97,8 +112,10 @@ export class ProjectsComponent implements OnInit{
       this.filteredProjects = this.projects.filter(project => {
         let backendStartDate = new Date(project.start);
         let backendEndDate = new Date(project.end);
-        return backendStartDate >= startDate && backendEndDate <= endDate;
+
+        return (backendStartDate.getTime() >= startDate.getTime() && backendEndDate.getTime() <= endDate.getTime());
       })
+
     }
   }
 
