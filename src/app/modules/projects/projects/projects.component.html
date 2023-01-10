@@ -1,7 +1,7 @@
 <!--<p>Lijst van projecten</p>-->
 <p *ngIf="!connected()" >u moet zich eerst inloggen </p>
 
-<div *ngIf="connected()">
+<div class ="top">
 
   <mat-form-field appearance="fill">
     <mat-label>Kies periode</mat-label>
@@ -13,9 +13,15 @@
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
 
-  <mat-button-toggle (click)="submit()" >Kiezen</mat-button-toggle>
+  <button mat-raised-button (click)="submit()" >
+    <mat-icon>search</mat-icon>
+  </button>
 
   <button mat-raised-button (click)="add()">Project toevoegen</button>
+
+</div>
+
+
 
   <div *ngIf="filteredOngoingProjects">
     <table mat-table [dataSource]="filteredOngoingProjects" class="mat-elevation-z8">
@@ -68,7 +74,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-</div>
+
 
 
 

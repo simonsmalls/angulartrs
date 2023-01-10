@@ -1,6 +1,17 @@
+table {
+  width: 800px;
+}
+
 .top{
   display: flex;
-  align-items: stretch;
-  align-content: center;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.top button {
+  height: 55px;
+  margin-left:10px;
+}
+
+h2, h3 {
+  text-align: center;
 }
