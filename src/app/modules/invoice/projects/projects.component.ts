@@ -133,9 +133,9 @@ export class ProjectsComponent implements OnInit{
   finalise(invoiceId: number, projectId: number) {
 
     this.invoiceService.finaliseInvoice(invoiceId).subscribe(i=> {
+      this.showInvoices(projectId);
     })
 
-    this.showInvoices(projectId);
 
   }
 

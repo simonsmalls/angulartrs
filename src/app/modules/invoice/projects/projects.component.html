@@ -10,7 +10,9 @@
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
 
-  <mat-button-toggle (click)="submit()" >Kiezen</mat-button-toggle>
+  <button mat-raised-button (click)="submit()" >
+      <mat-icon>search</mat-icon>
+  </button>
 </div>
   <div *ngIf="filteredProjectsCheck()">
     <table mat-table [dataSource]="filteredProjects" class="mat-elevation-z8">

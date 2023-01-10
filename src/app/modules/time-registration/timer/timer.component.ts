@@ -6,9 +6,7 @@ import {ConsultantService} from "../../../service/consultant.service";
 import {WorkingTime} from "../../../model/working-time.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../../../service/auth.service";
-import {
-  DialogOverviewExampleDialog
-} from "../../agenda/dialog-overview-example-dialog/dialog-overview-example-dialog.component";
+
 import {PopupDeleteComponent} from "../popup-delete/popup-delete.component";
 import {MatDialog} from "@angular/material/dialog";
 
