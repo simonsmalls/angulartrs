@@ -49,14 +49,24 @@ export class ProjectsComponent implements OnInit{
 
     this.projectService.getAll().subscribe(p => {
       this.projects = p;
-      this.filteredProjects = this.projects;
-      console.log(this.filteredProjects.length + "nr of projects found")
+      this.filteredProjects = this.projects.filter(project => {
+        let startDate = new Date();
+        let endDate = new Date();
+        let backendStartDate = new Date(project.start);
+        let backendEndDate = new Date(project.end);
+
+        return ((startDate < backendStartDate && (endDate => backendStartDate && endDate <= backendEndDate)) ||
+          ((startDate >= backendStartDate && startDate <= backendEndDate) && (endDate >= backendEndDate)) ||
+          (startDate >= backendStartDate && endDate <= backendEndDate) || (startDate <= backendStartDate && endDate >= backendEndDate))
+
+      })
+
+
 
       for (const project of this.projects) {
         try {
           this.invoiceService.updateProjectInvoice(project.id).subscribe();
         } catch (error) {
-          console.log("geen factuur gevonden voor vorige maand")
         }
 
       }
@@ -89,7 +99,7 @@ export class ProjectsComponent implements OnInit{
   }
 
   filteredProjectsCheck(){
-    console.log(this.filteredProjects)
+
     if(this.filteredProjects==undefined) return false
     return (!(this.filteredProjects.length==0))
 
@@ -100,8 +110,7 @@ export class ProjectsComponent implements OnInit{
     let startDate :Date= this.entityForm.value.startDate;
     let endDate:Date= this.entityForm.value.endDate;
 
-    console.log(startDate)
-    console.log(endDate)
+
     this.ongoingInvoices = null;
     this.historyInvoices = null;
     if (startDate == null || endDate == null) {
@@ -111,7 +120,10 @@ export class ProjectsComponent implements OnInit{
         let backendStartDate = new Date(project.start);
         let backendEndDate = new Date(project.end);
 
-        return ((backendStartDate<= startDate && backendEndDate >= endDate) || (backendStartDate >= startDate && backendEndDate <= endDate));
+        return ((startDate < backendStartDate && (endDate => backendStartDate && endDate <= backendEndDate)) ||
+          ((startDate >= backendStartDate && startDate <= backendEndDate) && (endDate >= backendEndDate)) ||
+          (startDate >= backendStartDate && endDate <= backendEndDate) || (startDate <= backendStartDate && endDate >= backendEndDate)
+        );
       })
 
     }
@@ -123,14 +135,11 @@ export class ProjectsComponent implements OnInit{
       this.ongoingInvoices.data = i.filter(invoice => invoice.closed === false);
       this.historyInvoices.data = i.filter(invoice => invoice.closed === true);
     })
-    console.log(this.ongoingInvoices.data.length + " nr of of ongoing invoices");
-    console.log(this.historyInvoices.data.length  + " nr of history invoices")
   }
 
   afterInvoiceDate(date):boolean{
     let datenow =new Date();
     let invoiceDate = new Date(date)
-    console.log(invoiceDate)
     if (datenow.getTime() > invoiceDate.getTime()) return false
 
     return true
@@ -139,7 +148,6 @@ export class ProjectsComponent implements OnInit{
   finalise(invoiceId: number, projectId: number) {
 
     this.invoiceService.finaliseInvoice(invoiceId).subscribe(i=> {
-      console.log("invoice closed")
     })
 
     this.showInvoices(projectId);

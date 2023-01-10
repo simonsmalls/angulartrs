@@ -75,7 +75,10 @@ export class ProjectsComponent implements OnInit {
       this.filteredAllProjects = this.allProjects.filter(project => {
         let backendStartDate = new Date(project.start);
         let backendEndDate = new Date(project.end);
-        return ((backendStartDate<= startDate && backendEndDate >= endDate) || (backendStartDate >= startDate && backendEndDate <= endDate));
+        return ((startDate < backendStartDate && (endDate => backendStartDate && endDate <= backendEndDate)) ||
+          ((startDate >= backendStartDate && startDate <= backendEndDate) && (endDate >= backendEndDate)) ||
+          (startDate >= backendStartDate && endDate <= backendEndDate) || (startDate <= backendStartDate && endDate >= backendEndDate)
+        );
       })
     }
   }

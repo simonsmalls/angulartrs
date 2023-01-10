@@ -25,7 +25,7 @@
     <li *ngIf="isManager()">
       <a class="middle-nav"  routerLink="/analyze" [routerLinkActive]="['active']">Statistieken</a>
     </li>
-      <li *ngIf="isAccountant()">
+      <li *ngIf="userConnected()">
         <a class="middle-nav" routerLink="/invoices" [routerLinkActive]="['active']">Facturatie</a>
       </li>
     <li *ngIf="isManager()">
