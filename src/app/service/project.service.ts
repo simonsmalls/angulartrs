@@ -24,7 +24,6 @@ export class ProjectService {
   }
 
   addProject( project:Project) {
-    console.log(project)
     return this.httpClient.post<void>(this.url+ 'add',project);
   }
 

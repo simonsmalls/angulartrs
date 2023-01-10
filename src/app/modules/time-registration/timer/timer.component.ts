@@ -53,14 +53,13 @@ export class TimerComponent implements OnInit{
     this.consultantService.getWorkingTimesTodayForConsultant(this.user.id)
       .subscribe((workingtimes) => {
         this.dataSource = workingtimes;
-        console.log(workingtimes);
       });
 
     this.consultantService.getOpenWorkingTimeTodayForConsultant(this.user.id)
       .subscribe(workingtime =>  {
         this.openWorkTime = workingtime;
         this.hasOpenWorkTime = (this.openWorkTime != null);
-        console.log('current: ', workingtime)});
+        });
   }
 
   startDay(){
@@ -68,7 +67,6 @@ export class TimerComponent implements OnInit{
 
     this.consultantService.startClock(this.user.id).subscribe(
       (workingTime) => {
-        console.log("started: " , workingTime);
         this.loadWorkingTimes();
       }
     );

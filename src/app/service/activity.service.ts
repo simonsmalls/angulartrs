@@ -19,7 +19,7 @@ export class ActivityService {
 
 
     this.date=new Date();
-    console.log('activity service created')
+
 
   }
 
