@@ -22,6 +22,7 @@ export class NavComponent {
     private activityService:ActivityService,
               ) {
     this.user=this.authService.connectedUser;
+    this.activeLink = "/agenda/check";
   }
 
   goTo(link: string){
