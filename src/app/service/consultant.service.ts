@@ -33,6 +33,9 @@ export class ConsultantService {
     return this.httpClient.get<ConsultantSalary[]>(this.url + `salaries/${year}/${month}`);
   }
 
+  deleteWorkingTime(workingTime: WorkingTime){
+    return this.httpClient.delete<void>(this.url + `${workingTime.id}`);
+  }
 
 
 }

@@ -3,6 +3,7 @@ import { EmployeeService } from 'src/app/service/employee.service';
 import {Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
 import {Employee} from "../../model/employee.model";
+import {ActivityService} from "../../service/activity.service";
 
 @Component({
   selector: 'app-nav',
@@ -14,12 +15,16 @@ export class NavComponent {
   constructor(
     private employeeService:EmployeeService,
     private authService:AuthService,
-    private router: Router,
-    ) {
+              private router: Router,
+    private activityService:ActivityService,
+              ) {
     this.user=this.authService.connectedUser;
   }
 
   userConnected():boolean{
+    if (!this.router.url.startsWith('/agenda')) {
+      this.activityService.date=new Date();
+      }
     if(this.authService.connectedUser==null ) {
 
       if (this.router.url!= '/login'){
@@ -52,7 +57,7 @@ export class NavComponent {
   disconnect(){
     this.authService.logout();
     this.router.navigate(["/login"]);
-    console.log("user gets disconnected");
+
   }
 
 }

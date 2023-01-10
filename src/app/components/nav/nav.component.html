@@ -28,12 +28,16 @@
       <li *ngIf="userConnected()">
         <a class="middle-nav" routerLink="/invoices" [routerLinkActive]="['active']">Facturatie</a>
       </li>
-    </ul>
+    <li *ngIf="isManager()">
+      <a class="middle-nav" routerLink="/projects" [routerLinkActive]="['active']">Projecten</a>
+    </li>
+  </ul>
   </div>
+
   <div>
   <ul *ngIf="userConnected()" class="right-nav">
     <li>
-      {{user.firstName | titlecase }} {{user.lastName | titlecase}}
+      <span>{{user.firstName | titlecase }} {{user.lastName | titlecase}}</span>
     </li>
 
     <li>

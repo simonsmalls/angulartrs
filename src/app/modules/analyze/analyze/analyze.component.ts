@@ -59,6 +59,7 @@ export class AnalyzeComponent {
     this.projectService.getAll().subscribe((c)=>{
       this.projects=c;
       this.optionsProjects=this.projects.map(x=>x.name);
+      this.optionsProjects.push('intern')
       this.filteredOptionsProjects = this.myControl.valueChanges.pipe(
         startWith(''),
         map(value => this._filter(value || '',this.optionsProjects)),
@@ -111,6 +112,9 @@ export class AnalyzeComponent {
       if (name==project.name) {
         return project.id
       }
+      if(name=='intern'){
+        return -1;
+      }
     }
 
     return null;
@@ -145,7 +149,7 @@ export class AnalyzeComponent {
       this.analysis=c;
       this.dataSource.data=c;
       this.tableready=true;
-        console.log(c)
+
     }
     )
   }

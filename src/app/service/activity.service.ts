@@ -8,7 +8,7 @@ import { Activity } from '../model/activity.model';
 import { DateDTO } from '../model/date-dto';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class ActivityService {
 
@@ -19,13 +19,14 @@ export class ActivityService {
 
 
     this.date=new Date();
+    console.log('activity service created')
 
   }
 
 
 
   addActivity( activity:Activity) {
-    console.log(activity)
+
     return this.httpClient.post<void>(this.url+ 'add',activity);
   }
 

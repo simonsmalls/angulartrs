@@ -1,4 +1,4 @@
-<h2>Salarissen van de vorige maand</h2>
+<h2>Salarissen van {{month}}</h2>
 <div>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -19,6 +19,11 @@
     <ng-container matColumnDef="minutesWorked">
       <th mat-header-cell *matHeaderCellDef>Gewerkte tijd</th>
       <td mat-cell *matCellDef="let element" > {{element.minutesWorked | minsToHrMins}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hourlyRate">
+      <th mat-header-cell *matHeaderCellDef>Uurloon</th>
+      <td mat-cell *matCellDef="let element" > {{element.hourlyRate | currency :'EUR':'symbol':'1.2-2':'nl-BE'}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

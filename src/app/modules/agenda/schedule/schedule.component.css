@@ -1,5 +1,5 @@
 table{
-  width: 100%;
+  width: 800px;
 
 }
 
@@ -18,6 +18,36 @@ table{
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
+.mat-column-start {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  width:75px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-end {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  width:75px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 .mat-column-category {
   word-wrap: break-word !important;
   white-space: unset !important;
