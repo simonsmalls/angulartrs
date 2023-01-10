@@ -1,5 +1,3 @@
-<!--<p>Lijst van projecten</p>-->
-<p *ngIf="!connected()" >u moet zich eerst inloggen </p>
 
 <div *ngIf="connected()">
 
@@ -13,7 +11,7 @@
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
 
-  <mat-button-toggle (click)="submit()" >Kiezen</mat-button-toggle>
+  <button mat-raised-button (click)="submit()" >Kiezen</button>
 
   <button mat-raised-button (click)="add()">Project toevoegen</button>
 
