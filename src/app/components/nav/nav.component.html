@@ -1,17 +1,41 @@
-<nav>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+<div class="title">
+  <div class="topdivs"></div>
+  <div id="second" class="topdivs"><h1>Time Registration System</h1></div>
+  <div id="third" class="topdivs" >
+    <span *ngIf="userConnected()">{{user.firstName | titlecase }} {{user.lastName | titlecase}} </span>
+    <button mat-button *ngIf="userConnected()" (click)="disconnect()">Logout</button>
+  </div>
+
+</div>
+  <div *ngIf="userConnected()">
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link (click)="goTo('/agenda/check')" [active]="activeLink=='/agenda/check'">Agenda</a>
+      <a mat-tab-link *ngIf="isConsultant()" (click)="goTo('/time-registration')" [active]="activeLink=='/time-registration'">Tijdsregistratie</a>
+      <a mat-tab-link *ngIf="isAccountant()" (click)="goTo('/salaries')" [active]="activeLink=='/salaries'">Salarissen</a>
+      <a mat-tab-link *ngIf="isManager()" (click)="goTo('/analyze')" [active]="activeLink=='/analyze'">Statistieken</a>
+      <a mat-tab-link *ngIf="isManager()" (click)="goTo('/invoices')" [active]="activeLink=='/invoices'">Facturatie</a>
+      <a mat-tab-link *ngIf="isManager()" (click)="goTo('/projects')" [active]="activeLink=='/projects'">Projecten</a>
+    </nav>
+  </div>
+  <!--
   <div>
     <ul >
-      <!--
+      &lt;!&ndash;
       <li>
         <img src="abislogo.svg" alt="logo">
       </li>
-      -->
+      &ndash;&gt;
       <li>
         <span>TRS</span>
       </li>
     </ul>
   </div>
+
   <div>
+
   <ul *ngIf="userConnected()">
     <li>
       <a class="middle-nav" routerLink="/agenda/check" [routerLinkActive]="['active']">Agenda</a>
@@ -44,5 +68,4 @@
       <a (click)="disconnect()">Logout</a>
     </li>
   </ul>
-  </div>
-</nav>
+  </div>-->

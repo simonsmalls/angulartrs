@@ -1,19 +1,52 @@
 nav {
-  background-color: #049ACC;/* #049ACC is blauw  #7dba00  (green)  and darkgrey was oorspronkelijk*/
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 2px;
-  display: flex;
+  background-color: lightblue; /*#049ACC;/* #049ACC is blauw  #7dba00  (green)  and darkgrey was oorspronkelijk*/
+}
+
+.title {
+  background-color: #049ACC; /*/* #049ACC is blauw  #7dba00  (green)  and darkgrey was oorspronkelijk*/
+
+  padding-top:15px;
+  display:flex;
   flex-direction: row;
   justify-content: space-between;
+  height:45px;
 }
+.topdivs{
+  width: 33%;
+
+}
+#second{
+  display: flex;
+  justify-content: center;
+}
+#third{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+#third span, #third button {
+  color: white;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+ h1 {
+   color:white;
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+   font-weight: 500;
+   padding-left: 2px;
+}
+
+.right {
+  align-self:flex-end
+}
+/*
 
 ul {
   padding : 0;
   list-style-type: none;
   font-weight: bold;
   display: flex;
-
 
 }
 ul li {
@@ -54,3 +87,4 @@ a:hover {
 .active{
   font-size: 36px;
 }
+*/
