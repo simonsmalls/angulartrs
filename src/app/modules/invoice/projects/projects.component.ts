@@ -111,7 +111,7 @@ export class ProjectsComponent implements OnInit{
         let backendStartDate = new Date(project.start);
         let backendEndDate = new Date(project.end);
 
-        return (backendStartDate.getTime() >= startDate.getTime() && backendEndDate.getTime() <= endDate.getTime());
+        return ((backendStartDate<= startDate && backendEndDate >= endDate) || (backendStartDate >= startDate && backendEndDate <= endDate));
       })
 
     }
