@@ -29,8 +29,8 @@ export class ProjectsComponent implements OnInit{
   historyInvoices = new MatTableDataSource<Invoice>();
   projectId: number;
   displayedColumns: string[] = ['projectName','clientName','showInvoices'];
-  displayedColumnsOngoingInvoices: string[] = ['clientName','projectName','date','totalPrice', 'finalise'];
-  displayedColumnsClosedInvoices: string[] = ['clientName','projectName','date','totalPrice'];
+  displayedColumnsOngoingInvoices: string[] = ['projectName', 'clientName','date','totalPrice', 'finalise'];
+  displayedColumnsClosedInvoices: string[] = ['projectName','clientName','date','totalPrice'];
 
 
   constructor(
@@ -76,18 +76,16 @@ export class ProjectsComponent implements OnInit{
     }
     return true;
   }
+
   historyInvoicesCheck(){
     if(this.historyInvoices==null) return false
 
     return (this.historyInvoices.data.length>0)
-
-
   }
+
   ongoingInvoicesCheck(){
     if(this.ongoingInvoices==null) return false
     return (this.ongoingInvoices.data.length>0)
-
-
   }
 
   filteredProjectsCheck(){
@@ -119,7 +117,6 @@ export class ProjectsComponent implements OnInit{
     }
   }
 
-
   showInvoices(projectId: number) {
 
     this.invoiceService.getAllInvoicesOfId(projectId).subscribe(i =>{
@@ -128,8 +125,8 @@ export class ProjectsComponent implements OnInit{
     })
     console.log(this.ongoingInvoices.data.length + " nr of of ongoing invoices");
     console.log(this.historyInvoices.data.length  + " nr of history invoices")
-
   }
+
   afterInvoiceDate(date):boolean{
     let datenow =new Date();
     let invoiceDate = new Date(date)
@@ -139,16 +136,14 @@ export class ProjectsComponent implements OnInit{
     return true
   }
 
-  finalise(invoiceId: number) {
+  finalise(invoiceId: number, projectId: number) {
 
     this.invoiceService.finaliseInvoice(invoiceId).subscribe(i=> {
       console.log("invoice closed")
     })
 
-  }
+    this.showInvoices(projectId);
 
-  checkMonthly(){
-    this.router.navigate(['/month'])
   }
 
 
