@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Project} from "../../../model/project.model";
 import {ProjectService} from "../../../service/project.service";
 import {MatTableDataSource} from "@angular/material/table";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {AuthService} from "../../../service/auth.service";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
@@ -18,39 +18,70 @@ import {DateDTO} from "../../../model/date-dto";
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  dataSource: Project[];
-  displayedColumns: string[] = ["name", "clientName", "description", "hourlyRate", "start", "end"]; // TODO "actions"?
-  user:Employee;
+  filteredOngoingProjects: Array<Project>;
+  ongoingProjects: Array<Project>;
+  filteredAllProjects: Array<Project>;
+  allProjects: Array<Project>;
+  entityForm: FormGroup;
+  user: Employee;
+  displayedColumns: string[] = ['projectName', 'clientName', 'description', 'hourlyRate'];
 
   constructor(
-    private authService:AuthService,
-    private projectService:ProjectService,
-    private router:Router,
-    public dialog: MatDialog,
-
-  ) {}
-
-  ngOnInit(): void {
-    /*
-    this.user = this.authService.connectedUser;
-    if (this.user == null) this.router.navigate(["/login"]);
-    this.date = new Date();   // TODAY
-    this.projectService.getAllOngoing().subscribe( (c) => {
-        this.projects = c;
-        this.dataSource.data = c;
-      }
-    )
-
-     */
+    private authService: AuthService,
+    private projectService: ProjectService,
+    private router: Router,
+    private fb: FormBuilder,
+  ) {
   }
 
-  connected():boolean {
+  ngOnInit(): void {
+    this.user = this.authService.connectedUser;
+    if (this.user == null) this.router.navigate(["/login"]);
+    this.projectService.getAllOngoing().subscribe((p) => {
+        this.ongoingProjects = p;
+        this.filteredOngoingProjects = this.ongoingProjects;
+      }
+    )
+    this.allProjects = null;
+
+    this.entityForm = new FormGroup({
+      startDate: new FormControl(''),
+      endDate: new FormControl('')
+    });
+
+  }
+
+  connected(): boolean {
     return this.authService.connectedUser != null;
   }
 
-  add(){
+  add() {
     this.router.navigate(['/projects/add'])
   }
 
+  submit() {
+    let startDate :Date= this.entityForm.value.startDate;
+    let endDate:Date= this.entityForm.value.endDate;
 
+    this.projectService.getAll().subscribe((p) => {
+      this.allProjects = p;
+    })
+
+    if (startDate == null || endDate == null) {
+      this.filteredAllProjects = null;
+      this.filteredOngoingProjects = this.ongoingProjects;
+    } else {
+      this.filteredOngoingProjects = null;
+      this.filteredAllProjects = this.allProjects.filter(project => {
+        let backendStartDate = new Date(project.start);
+        let backendEndDate = new Date(project.end);
+        return ((startDate < backendStartDate && (endDate => backendStartDate && endDate <= backendEndDate)) ||
+          ((startDate >= backendStartDate && startDate <= backendEndDate) && (endDate >= backendEndDate)) ||
+          (startDate >= backendStartDate && endDate <= backendEndDate) || (startDate <= backendStartDate && endDate >= backendEndDate)
+        );
+      })
+    }
+  }
 }
+
+
