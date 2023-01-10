@@ -6,6 +6,11 @@ import {ConsultantService} from "../../../service/consultant.service";
 import {WorkingTime} from "../../../model/working-time.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../../../service/auth.service";
+import {
+  DialogOverviewExampleDialog
+} from "../../agenda/dialog-overview-example-dialog/dialog-overview-example-dialog.component";
+import {PopupDeleteComponent} from "../popup-delete/popup-delete.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({
@@ -28,6 +33,7 @@ export class TimerComponent implements OnInit{
     private consultantService: ConsultantService,
     private router: Router,
     private snackBar: MatSnackBar,
+    public dialog: MatDialog,
   ) {
   }
 
@@ -47,14 +53,13 @@ export class TimerComponent implements OnInit{
     this.consultantService.getWorkingTimesTodayForConsultant(this.user.id)
       .subscribe((workingtimes) => {
         this.dataSource = workingtimes;
-        console.log(workingtimes);
       });
 
     this.consultantService.getOpenWorkingTimeTodayForConsultant(this.user.id)
       .subscribe(workingtime =>  {
         this.openWorkTime = workingtime;
         this.hasOpenWorkTime = (this.openWorkTime != null);
-        console.log('current: ', workingtime)});
+        });
   }
 
   startDay(){
@@ -62,7 +67,6 @@ export class TimerComponent implements OnInit{
 
     this.consultantService.startClock(this.user.id).subscribe(
       (workingTime) => {
-        console.log("started: " , workingTime);
         this.loadWorkingTimes();
       }
     );
@@ -106,9 +110,21 @@ export class TimerComponent implements OnInit{
   }
 
   delete(workingTime: WorkingTime){
-    this.consultantService.deleteWorkingTime(workingTime)
-      .subscribe(() => {
-        this.loadWorkingTimes();
-      });
+
+    this.openDialog(workingTime);
+  }
+
+  openDialog(id: WorkingTime): void {
+    const dialogRef = this.dialog.open(PopupDeleteComponent, {
+      width: '250px',
+      data: id
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+     this.loadWorkingTimes();
+
+
+    });
   }
 }

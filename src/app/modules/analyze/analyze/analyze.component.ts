@@ -59,7 +59,7 @@ export class AnalyzeComponent {
     this.projectService.getAll().subscribe((c)=>{
       this.projects=c;
       this.optionsProjects=this.projects.map(x=>x.name);
-      this.optionsProjects.push('intern')
+      this.optionsProjects.unshift('intern')
       this.filteredOptionsProjects = this.myControl.valueChanges.pipe(
         startWith(''),
         map(value => this._filter(value || '',this.optionsProjects)),

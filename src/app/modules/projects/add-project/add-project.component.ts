@@ -74,11 +74,15 @@ export class AddProjectComponent implements OnInit {
     project.clientName = this.entityForm.controls['clientId'].value;
     project.hourlyRate = this.entityForm.controls['hourlyRate'].value;
     project.start = this.entityForm.controls['startDate'].value;
+
     project.end = this.entityForm.controls['endDate'].value;
 
+
+    project.start.setHours(1,1,1);
+    project.end.setHours(1,1,1);
+
     this.projectService.addProject(project).subscribe( (c) => {
-      console.log("project sent");
-      console.log(project);
+
       this.router.navigate(['/projects']);   // TODO
     });
   }
