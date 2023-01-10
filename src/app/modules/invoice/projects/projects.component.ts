@@ -77,6 +77,8 @@ export class ProjectsComponent implements OnInit{
       startDate: new FormControl(''),
       endDate: new FormControl('')
     });
+    this.entityForm.controls['startDate'].setValue(new Date());
+    this.entityForm.controls['endDate'].setValue(new Date());
 
 
   }
