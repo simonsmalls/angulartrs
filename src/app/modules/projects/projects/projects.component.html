@@ -58,11 +58,6 @@
         <td mat-cell *matCellDef="let element">{{element.clientName}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>Omschrijving</th>
-        <td mat-cell *matCellDef="let element">{{element.description}}</td>
-      </ng-container>
-
       <ng-container matColumnDef="hourlyRate">
         <th mat-header-cell *matHeaderCellDef>Prijs per uur</th>
         <td mat-cell *matCellDef="let element">{{element.hourlyRate | currency :'EUR':'symbol':'1.2-2':'nl-BE'}}</td>

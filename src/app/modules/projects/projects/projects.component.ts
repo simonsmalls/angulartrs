@@ -24,7 +24,7 @@ export class ProjectsComponent implements OnInit {
   allProjects: Array<Project>;
   entityForm: FormGroup;
   user: Employee;
-  displayedColumns: string[] = ['projectName', 'clientName', 'description', 'hourlyRate'];
+  displayedColumns: string[] = ['projectName', 'clientName', 'hourlyRate'];
 
   constructor(
     private authService: AuthService,
