@@ -24,7 +24,12 @@
 
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef>Acties</th>
-      <td mat-cell *matCellDef="let element"><button mat-raised-button color="warn" (click)="delete(element)" >verwijder</button></td>
+      <td mat-cell *matCellDef="let element">
+        <!--<button mat-raised-button color="warn" (click)="delete(element)" >verwijder</button>-->
+        <button mat-button (click)="delete(element)" >
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

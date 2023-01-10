@@ -65,11 +65,9 @@ table{
 }
 .top{
   display: flex;
-  justify-items: center;
+  align-items: stretch;
+  align-content: center;
   justify-content: space-between;
-}
-.but{
-  height: 50%;
 }
 
 
