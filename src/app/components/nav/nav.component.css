@@ -1,5 +1,5 @@
 nav {
-  background-color: #049ACC;/* #049ACC is blauw  #7dba00  (green)  and darkgrey was oorspronkelijk*/
+  background-color: lightblue; /*#049ACC;/* #049ACC is blauw  #7dba00  (green)  and darkgrey was oorspronkelijk*/
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 2px;
@@ -8,12 +8,17 @@ nav {
   justify-content: space-between;
 }
 
+a {
+  color: white;
+  opacity: 1 !important;
+}
+/*
+
 ul {
   padding : 0;
   list-style-type: none;
   font-weight: bold;
   display: flex;
-
 
 }
 ul li {
@@ -54,3 +59,4 @@ a:hover {
 .active{
   font-size: 36px;
 }
+*/

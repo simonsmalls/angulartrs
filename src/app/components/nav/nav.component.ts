@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
 import {Employee} from "../../model/employee.model";
 import {ActivityService} from "../../service/activity.service";
+import {KeyValue} from "@angular/common";
 
 @Component({
   selector: 'app-nav',
@@ -12,6 +13,8 @@ import {ActivityService} from "../../service/activity.service";
 })
 export class NavComponent {
   user:Employee;
+  activeLink: String;
+
   constructor(
     private employeeService:EmployeeService,
     private authService:AuthService,
@@ -19,6 +22,11 @@ export class NavComponent {
     private activityService:ActivityService,
               ) {
     this.user=this.authService.connectedUser;
+  }
+
+  goTo(link: string){
+    this.activeLink = link;
+    this.router.navigate([link]);
   }
 
   userConnected():boolean{
