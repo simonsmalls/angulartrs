@@ -1,0 +1,17 @@
+table {
+  width: 800px;
+}
+
+.top{
+  display: flex;
+  justify-content: center;
+}
+
+.top button {
+  height: 55px;
+  margin-left:10px;
+}
+
+h2, h3 {
+  text-align: center;
+}

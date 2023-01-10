@@ -1,3 +1,12 @@
+.top{
+  display: flex;
+  justify-content: space-between;
+}
+
+.top button {
+  height: 55px;
+}
+
 table{
   width: 800px;
 
@@ -62,12 +71,6 @@ table{
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-}
-.top{
-  display: flex;
-  align-items: stretch;
-  align-content: center;
-  justify-content: space-between;
 }
 
 
