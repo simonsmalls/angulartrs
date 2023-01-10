@@ -27,7 +27,7 @@ export class ProjectsComponent implements OnInit{
   ongoingInvoices = new MatTableDataSource<Invoice>();
   historyInvoices = new MatTableDataSource<Invoice>();
   projectId: number;
-  displayedColumns: string[] = ['projectName','clientName','description','showInvoices'];
+  displayedColumns: string[] = ['projectName','clientName','showInvoices'];
   displayedColumnsOngoingInvoices: string[] = ['clientName','projectName','date','totalPrice', 'finalise'];
   displayedColumnsClosedInvoices: string[] = ['clientName','projectName','date','totalPrice'];
 
@@ -74,6 +74,16 @@ export class ProjectsComponent implements OnInit{
       return false
     }
     return true;
+  }
+  historyInvoicesCheck(){
+    return (this.historyInvoices.data.length>0)
+
+
+  }
+  ongoingInvoicesCheck(){
+    return (this.ongoingInvoices.data.length>0)
+
+
   }
 
   submit() {

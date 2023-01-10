@@ -9,12 +9,11 @@
     </mat-date-range-input>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker #picker></mat-date-range-picker>
-    <br>
   </mat-form-field>
 
   <mat-button-toggle (click)="submit()" >Kiezen</mat-button-toggle>
 
-  <table mat-table [dataSource]="filteredProjects">
+  <table mat-table [dataSource]="filteredProjects" class="mat-elevation-z8">
     <ng-container matColumnDef="projectName">
       <th mat-header-cell *matHeaderCellDef> Naam  </th>
       <td mat-cell *matCellDef="let project"> {{project.name}} </td>
@@ -23,13 +22,10 @@
       <th mat-header-cell *matHeaderCellDef> Cliënt </th>
       <td mat-cell *matCellDef="let project"> {{project.clientName}} </td>
     </ng-container>
-    <ng-container matColumnDef=description>
-      <th mat-header-cell *matHeaderCellDef> Beschrijving </th>
-      <td mat-cell *matCellDef="let project"> {{project.description}} </td>
-    </ng-container>
+
     <ng-container matColumnDef="showInvoices">
       <th mat-header-cell *matHeaderCellDef> Facturatie </th>
-      <td mat-cell *matCellDef="let project" ><mat-button-toggle (click)="showInvoices(project.id)" >Laat facturen zien</mat-button-toggle></td>
+      <td mat-cell *matCellDef="let project" ><button mat-button (click)="showInvoices(project.id)" >Toon facturen </button></td>
     </ng-container>
 
     <caption mat-caption> Projecten</caption>
@@ -40,8 +36,8 @@
 
   <br>
 
-  <div *ngIf="ongoingInvoices" >
-  <table mat-table [dataSource]="ongoingInvoices">
+  <div *ngIf="ongoingInvoicesCheck()" >
+  <table mat-table [dataSource]="ongoingInvoices" class="mat-elevation-z8">
     <ng-container matColumnDef=clientName>
       <th mat-header-cell *matHeaderCellDef> Cliënt </th>
       <td mat-cell *matCellDef="let invoice"> {{invoice.clientName}} </td>
@@ -72,8 +68,8 @@
 
   <br>
 
-  <div *ngIf="historyInvoices">
-  <table  mat-table [dataSource]="historyInvoices">
+  <div *ngIf="historyInvoicesCheck()">
+  <table  mat-table [dataSource]="historyInvoices" class="mat-elevation-z8">
 
     <ng-container matColumnDef=clientName>
       <th mat-header-cell *matHeaderCellDef> Cliënt </th>
