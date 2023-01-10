@@ -13,92 +13,62 @@
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>werknemer</mat-label>
+    <input type="text"
+           placeholder="werknemer"
+           aria-label="werknemer"
+           matInput
+           [formControl]="myControl"
+           [formControl]="$any(entityForm.controls['employee'])"
 
-
-<!--
-  <mat-form-field appearance="fill"  >
-    <mat-label> bedrijf</mat-label>
-    <mat-select    [formControl]="$any(entityForm.controls['client'])"   >
-      <mat-option *ngFor="let client of clients" [value]="client.id"  >{{client.name}}</mat-option>
-
-    </mat-select>
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option  *ngFor="let option1 of filteredOptionsEmployees | async" [value]="option1">
+        {{option1}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
-  <mat-form-field appearance="fill" >
-    <mat-label> werknemer</mat-label>
-    <mat-select    [formControl]="$any(entityForm.controls['employee'])"   >
-      <mat-option *ngFor="let employee of employees" [value]="employee.id"  >{{employee.firstName}} {{employee.lastName}}</mat-option>
-
-    </mat-select>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>project</mat-label>
+    <input type="text"
+           placeholder="project"
+           aria-label="project"
+           matInput
+           [formControl]="myControl"
+           [formControl]="$any(entityForm.controls['project'])"
+           [matAutocomplete]="auto1">
+    <mat-autocomplete #auto1="matAutocomplete">
+      <mat-option  *ngFor="let option of filteredOptionsProjects | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
--->
 
-      <mat-form-field appearance="fill">
-        <mat-label>werknemer</mat-label>
-        <input type="text"
-               placeholder="werknemer"
-               aria-label="werknemer"
-               matInput
-               [formControl]="myControl"
-               [formControl]="$any(entityForm.controls['employee'])"
-
-               [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option  *ngFor="let option1 of filteredOptionsEmployees | async" [value]="option1">
-            {{option1}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-
-
-
-
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>project</mat-label>
-      <input type="text"
-             placeholder="project"
-             aria-label="project"
-             matInput
-             [formControl]="myControl"
-             [formControl]="$any(entityForm.controls['project'])"
-             [matAutocomplete]="auto1">
-      <mat-autocomplete #auto1="matAutocomplete">
-        <mat-option  *ngFor="let option of filteredOptionsProjects | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-
-
-  <mat-button-toggle (click)="analyze()">start</mat-button-toggle>
+  <button mat-raised-button (click)="analyze()">
+    <mat-icon>search</mat-icon>
+  </button>
 </div>
 
 <table *ngIf="tableready" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-
-
-
-
-  <!-- Weight Column -->
   <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef> categorie </th>
+    <th mat-header-cell *matHeaderCellDef>Categorie</th>
     <td mat-cell *matCellDef="let element" >{{element.category | titlecase}}</td>
   </ng-container>
 
   <ng-container matColumnDef="tijd">
-    <th mat-header-cell *matHeaderCellDef>  tijd </th>
+    <th mat-header-cell *matHeaderCellDef>Tijd</th>
     <td mat-cell *matCellDef="let element" >{{element.timeWorked | minsToHrMins}}</td>
   </ng-container>
   <ng-container matColumnDef="percentage">
-    <th mat-header-cell *matHeaderCellDef> % van de tijd besteed </th>
+    <th mat-header-cell *matHeaderCellDef>% van de tijd besteed</th>
     <td mat-cell *matCellDef="let element" >{{element.percent | percentMine}}</td>
   </ng-container>
 
   <ng-container matColumnDef="money">
-    <th mat-header-cell *matHeaderCellDef> inkomsten </th>
+    <th mat-header-cell *matHeaderCellDef>Inkomsten</th>
     <td mat-cell *matCellDef="let element" >{{element.money | currency :'EUR':'symbol':'1.2-2':'nl-BE'}}</td>
   </ng-container>
 
